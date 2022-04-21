@@ -1,0 +1,17 @@
+<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+    <div class="col p-4 d-flex flex-column position-static">
+  <img src="{{i.image.url}}" class="card-img-top" alt="video thumbnail">
+        <strong class="d-inline-block mb-2 text-primary">Nawab Editz</strong>
+        <h3 class="mb-0">{{i.title}}</h3> 
+        <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{i.sp}}</del> <span class="text-danger">₹{{i.dp}}</span></p>
+        <hr>
+           <div class="text-center">
+            <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
+            <a href="#" role="button" class="btn btn-dark">Buy Now</a>
+          {% if request.user.is_superuser or request.user.is_staff%}
+          <a class="btn btn-danger" href="{% url "delete-post" i.id%}">Delete</a>
+          {% endif %}
+           </div>
+        </div>
+        </div>
+        </div>

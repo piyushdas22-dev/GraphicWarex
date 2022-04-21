@@ -1,16 +1,63 @@
-<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
-    <div class="col p-4 d-flex flex-column position-static">
-  <img src="{{i.image.url}}" class="card-img-top" alt="video thumbnail">
-        <strong class="d-inline-block mb-2 text-primary">{{i.user}}</strong>
-        <h3 class="mb-0">{{i.title}}</h3> 
-        <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{i.sp}}</del> <span class="text-danger">₹{{i.dp}}</span></p>
-        <hr>
-           <div class="text-center">
-            <a href="{{buy_link}}" role="button" class="btn btn-dark">Buy Now</a>
-          {% if request.user.is_superuser or request.user.is_staff%}
-          <a class="btn btn-danger" href="{% url "delete-post" i.id%}">Delete</a>
-          {% endif %}
-           </div>
-        </div>
-        </div>
-        </div>
+<style>
+  .modal-confirm {		
+    color: #636363;
+    width: 300px;
+  }
+
+  .modal-confirm .icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    border: 3px solid #f15e5e;
+  }
+  .modal-confirm .icon-box i {
+    color: #f15e5e;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+  }
+  </style>
+        
+        
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+          <img src="{{i.image.url}}" class="card-img-top" alt="video thumbnail">
+                <strong class="d-inline-block mb-2 text-primary">{{i.user}}</strong>
+                <h3 class="mb-0">{{i.title}}</h3> 
+                <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{i.sp}}</del> <span class="text-danger">₹{{i.dp}}</span></p>
+                <hr>
+                   <div class="text-center">
+                    <a href="{{buy_link}}" role="button" class="btn btn-dark">Buy Now</a>
+                  {% if request.user.is_superuser or request.user.is_staff%}
+                  <a href="#myModal" class="btn btn-danger" data-toggle="modal">Delete</a>
+                  
+                  
+                  {% endif %}
+                   </div>
+                </div>
+                </div>
+      
+        
+<!-- Modal -->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header flex-column">
+				<div class="icon-box">
+					<i class="material-icons">&#xE5CD;</i>
+				</div>						
+				<h4 class="modal-title w-100">Are you sure?</h4>	
+			</div>
+			<div class="modal-body">
+				<p>Do you really want to delete this post This process cannot be undone.</p>
+			</div>
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				<a href="{% url 'delete-post' i.id %}" class="btn btn-danger">Delete</a>
+			</div>
+		</div>
+	</div>
+</div>     

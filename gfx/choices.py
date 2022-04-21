@@ -38,3 +38,40 @@ CHOICES = (
         ('FPR', 'Free Packs Render'),
         ('FPG', 'Free Packs GFX Materials')
 )
+
+YT_PACKS_CHOICES = {
+        ('--', '------'),       
+
+        ('SST', 'SS Graphics Thumbnail'),
+        ('SSB', 'SS Graphics Banner'),
+        ('SSI', 'SS Graphics Intro'),
+        ('SSO', 'SS Graphics Outro'),
+        ('SSP', 'SS Graphics Poster'),
+        ('SSR', 'SS Graphics Render'),
+        ('SSG', 'SS Graphics GFX Materials'),
+
+        ('NET', 'Nawab Editz Thumbnail'),
+        ('NEB', 'Nawab Editz Banner'),
+        ('NEI', 'Nawab Editz Intro'),
+        ('NEO', 'Nawab Editz Outro'),
+        ('NEP', 'Nawab Editz Poster'),
+        ('NER', 'Nawab Editz Render'),
+        ('NEG', 'Nawab Editz GFX Materials'),
+
+        ('ABT', 'Aquas Brain Thumbnail'),
+        ('ABB', 'Aquas Brain Banner'),
+        ('ABI', 'Aquas Brain Intro'),
+        ('ABO', 'Aquas Brain Outro'),
+        ('ABP', 'Aquas Brain Poster'),
+        ('ABR', 'Aquas Brain Render'),
+        ('ABG', 'Aquas Brain GFX Materials'),
+
+        ('AGT', 'Arpit Graphiz Thumbnail'),
+        ('AGB', 'Arpit Graphiz Banner'),
+        ('AGI', 'Arpit Graphiz Intro'),
+        ('AGO', 'Arpit Graphiz Outro'),
+        ('AGP', 'Arpit Graphiz Poster'),
+        ('AGR', 'Arpit Graphiz Render'),
+        ('AGG', 'Arpit Graphiz GFX Materials'),
+
+}

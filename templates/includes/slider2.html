@@ -1,0 +1,12 @@
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" height="1024" width="1024">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{Trendingslider.0.image.url}}" class="d-block w-100" alt="{{Trendingslider.0.name}}">
+        </div>
+        {% for s in Trendingslider|slice:"1:" %}
+        <div class="carousel-item">
+          <img src="{{s.image.url}}" class="d-block w-100" alt="{{s.name}}">
+        </div>
+        {% endfor %}
+    </div>
+  </div>

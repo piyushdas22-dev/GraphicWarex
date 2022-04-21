@@ -15,60 +15,46 @@
   <a class="bg-dark container text-center p-2" href="#backtotop">Back To Top</a>
 </div> {% endcomment %}
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" height="1024" width="1024">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active bg-white" aria-current="true" aria-label="Slide 1"></button>
-    {% for slide in sliders|slice:"1:" %}
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter}}" aria-label="Slide 2"></button>
-{% endfor %}
-  </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{{sliders.0.image.url}}" class="d-block w-100" alt="{{sliders.0.name}}">
-      </div>
-      {% for s in sliders|slice:"1:" %}
-      <div class="carousel-item">
-        <img src="{{s.image.url}}" class="d-block w-100" alt="{{s.name}}">
-      </div>
-      {% endfor %}
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+{% include 'includes/slider.html' %}
+<hr>
+<div class="text-center text-dark">
+  <h2 class="my-4">Categories</h2>
+  <div>
+    {% include "includes/features.html" %}
+    <hr>
 {% if trends|length < 1 %}
 <br>
 {% else %}
 <div class="container mb-4">
-      <h2>Trending Now</h2>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for c in trends %}
-      <div class="col">
-        <div class="card h-100">
-          <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
+  <h2>Trending Now</h2>
+  {% include 'includes/slider2.html' %}
+  <br>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for c in trends|slice:"6" %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
           <div class="card-body">
             <h5 class="card-title">{{c.title}}</h5>
             <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{c.sp}}</del> <span class="text-danger">₹{{c.dp}}</span></p>
             <hr>
             <img class="rounded-circle" src="{{ c.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
-             Designer: {{c.user}}
+            Designer: {{c.user}} 
+            
           </a>
-          <div class="mx-5 my-2">
-          <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
-          <a href="#" role="button" class="btn btn-dark">Buy Now</a>
-          </div>
+          <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
+          <div class="text-center">
+            <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
+            <a href="#" role="button" class="btn btn-dark">Buy Now</a>
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
-    {% endif %}
+</div>
+{% endif %}
+<hr>
   {% endblock main-content %}
   
   

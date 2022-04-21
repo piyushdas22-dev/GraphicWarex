@@ -52,5 +52,5 @@ urlpatterns = [
     path('paidpacks/gfxmaterials/gfxmaterials_details/<int:pk>', views.PaidPacksGFXMaterialDetails.as_view(), name="paidpacksgfxmaterialsdetails"),
     path('paidpacks/post/', views.AddPaidPacks, name="paidpackspost"),
 
-    path("delete/<id>/", views.delete, name="delete-post"),
+    path("delete/<int:pk>/", views.delete, name="delete-post"),
 ]

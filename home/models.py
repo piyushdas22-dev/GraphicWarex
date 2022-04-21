@@ -10,6 +10,13 @@ class Slider(models.Model):
 	def __str__(self):
 		return f'{self.name}'
 
+class TrendingSlider(models.Model):
+	name = models.CharField(max_length=50, default = "", null=True)
+	image = models.ImageField(upload_to='slider_img')
+
+	def __str__(self):
+		return f'{self.name}'
+
 class Contact(models.Model):
 	email = models.EmailField()
 	content = models.CharField(max_length=99999)

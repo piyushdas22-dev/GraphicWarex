@@ -93,11 +93,13 @@
       <br>
       <br>
     </div>
-    {% endif %}
-  {% for i in userpacksthumbnail %}
-  {% include 'includes/usercard.html' %}
+    {% else %}
+    {% for i in userpacksthumbnail %}
+    {% include 'includes/usercard.html' %}
     {% endfor %}
-</div>
-</div>
-<div class="overlay"></div>
+  </div>
+  </div>
+  </div>
+  {% endif %}
+{% comment %} <div class="overlay"></div> {% endcomment %}
   {% endblock main-content %}
