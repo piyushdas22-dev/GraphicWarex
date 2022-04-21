@@ -1,0 +1,65 @@
+{% extends 'basefile/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-2 border-end">
+      <ul class="list-unstyled">
+        <li class="d-grid"><a href="{% url 'profile' %}" class="btn btn-primary">Profile</a></li>
+        <li class="d-grid"><a href="{% url 'changepassword' %}" class="btn">Change Password</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-8 offset-sm-1">
+     <h3 class="alert alert-info">{{request.user.username}}'s Profile: </h3>
+     {% if request.user.is_authenticated %}
+     <div class="form-content">
+      {% if messages %}
+      {% for message in messages %}
+        <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %}">{{message}}</p>
+      {% endfor %}
+    {% endif %}
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+{{form}}
+{{user_form}}
+                  <div class="col-12 mt-3 mb-3">
+                    <button type="submit" class="btn btn-danger">Save</button>
+                  </div>
+
+      </form>
+  </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% else %}
+    <h3 class="alert alert-warning">No Profile found, <a class="text-danger text-bold" href="{% url 'signup' %}">please create one<a/></h3>
+    {% endif %}
+   </form>
+  </div>
+ </div>
+</div>
+
+{% if UserDesigns %}
+    <h3>Your created posts:</h3>
+    {% for b in UserDesigns %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+    <img src="{{b.image.url}}" class="card-img-top" alt="video thumbnail">
+            <strong class="d-inline-block mb-2 text-primary">Nawab Editz</strong>
+            <h3 class="mb-0">{{b.title}}</h3> 
+            <a class="btn btn-primary" href="{% url "delete-post" UserDesigns.id%}">Delete</a>
+               <div class="my-2">
+            	<a href="#" role="button" class="btn btn-danger">Click-Here</a>
+            </div>
+            </div>
+            </div>
+    {% endfor %}
+{% else %}
+<p>You don't have any post yet.</p>
+{% endif %}
+{% endblock main-content %}

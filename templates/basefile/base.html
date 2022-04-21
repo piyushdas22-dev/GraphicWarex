@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}" />
+
+    <!--FontAwesome CSS-->
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}" />
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Square+Peg&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap" rel="stylesheet">
+    <!-- favicon -->
+    <link
+      rel="icon"
+      href="{% static 'image/favicon.png' %}"
+      sizes="16x16 32x32"
+      type="image/png"
+    />
+
+    <script>
+      function w3_open() {
+        document.getElementById("mySidebar").style.width = "100%";
+        document.getElementById("mySidebar").style.display = "block";
+      }
+      
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+      }
+    </script>
+
+    <style>
+  
+  @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+  @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+  body {
+      font-family: 'Poppins', sans-serif;
+      background: #fafafa;
+  }
+  
+  .wrapper {
+    display: block;
+}
+  p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1em;
+      font-weight: 300;
+      line-height: 1.7em;
+      color: #999;
+  }
+
+  a,
+  a:hover,
+  a:focus {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s;
+  }
+  
+  {% comment %} .navbar {
+      padding: 15px 10px;
+      background: #fff;
+      border: none;
+      border-radius: 0;
+      margin-bottom: 40px;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  } {% endcomment %}
+  
+  {% comment %} .navbar-btn {
+      box-shadow: none;
+      outline: none !important;
+      border: none;
+  } {% endcomment %}
+  
+  {% comment %} .line {
+      width: 100%;
+      height: 1px;
+      border-bottom: 1px dashed #ddd;
+      margin: 40px 0;
+  } {% endcomment %}
+  
+  /* ---------------------------------------------------
+      SIDEBAR STYLE
+  ----------------------------------------------------- */
+  
+  #sidebar {
+      width: 240px;
+      position: fixed;
+      top: 0;
+      left: -240px;
+      height: 110vh;
+      z-index: 99;
+      background: #fff;      ;
+      color: #fff;
+      transition: all 0.3s;
+      overflow-y: scroll;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  #sidebar.active {
+      left: 0;
+  }
+  
+  #dismiss {
+      margin-top: 10px;
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      background: #6d7fcc;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+  }
+
+  
+  .overlay {
+      display: none;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      {% comment %} background: rgba(0, 0, 0, 0.7); {% endcomment %}
+      z-index: 998;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+  }
+  .overlay.active {
+      display: block;
+      opacity: 1;
+  }
+  
+  #sidebar .sidebar-header {
+      padding: 20px;
+      background: #6d7fcc;
+  }
+  
+  #sidebar ul.components {
+      padding: 20px 0;
+      border-bottom: 1px solid #47748b;
+  }
+  
+  #sidebar ul p {
+      color: #fff;
+      padding: 10px;
+  }
+  
+  #sidebar ul li a {
+      padding: 10px;
+      font-size: 1.1em;
+      display: block;
+  }
+  
+  #sidebar ul li a:hover {
+      color: #7386D5;
+      background: #fff;
+  }
+  
+  ul ul a {
+      font-size: 0.9em !important;
+      padding-left: 30px !important;
+      background: #6d7fcc;
+  }
+  
+  {% comment %} ul.CTAs {
+      padding: 20px;
+  }
+   {% endcomment %}
+  {% comment %} ul.CTAs a {
+      text-align: center;
+      font-size: 0.9em !important;
+      display: block;
+      border-radius: 5px;
+      margin-bottom: 5px;
+  } {% endcomment %}
+
+  /* ---------------------------------------------------
+      CONTENT STYLE
+  ----------------------------------------------------- */
+  
+  #content {
+      width: 100%;
+      padding: 20px;
+      min-height: 100vh;
+      transition: all 0.3s;
+      position: absolute;
+      top: 0;
+      right: 0;
+  }
+
+  .nawab-font{
+    font-family: 'Square Peg', cursive;
+  }
+  .signup_form button{
+    color: #fff;
+    background-color: #231f20;
+    border:1px solid #231f20;
+    border-radius: 3px;
+    color: #f4f4f4;
+    height: 40px;
+    width: 80px;
+    font-size: 17px;
+  }
+
+  .signup_form button:hover{
+    background-color: #be2714;
+    border:1px solid #be2714;
+    color: #ffffff;
+  }
+  
+  .signup_form small{
+    float: right;
+    margin-top: 15px;
+    color: #231f20;
+  }
+  
+  .signup_form small a{
+    color: #be2714;
+  }
+.carousel1 {
+    margin: 30px auto;
+    padding: 0 50px;
+}
+.carousel1 .item {
+    min-height: 330px;
+    text-align: center;
+    overflow: hidden;
+}
+.carousel1 .item .img-box {
+    height: 160px;
+    width: 100%;
+    position: relative;
+}
+.carousel1 .item img {
+    max-width: 100%;
+    max-height: 100%;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+.carousel1 .item h4 {
+    font-size: 14px;
+    margin: 10px 0;
+}
+.carousel1 .item .btn {
+    color: #231f20;
+    border-radius: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: none;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-top: 5px;
+    line-height: 16px;
+}
+.carousel1 .item .btn:hover, .carousell .item .btn:focus {
+    color: #fff;
+    background: #231f20;
+    border-color: #231f20;
+    box-shadow: none;
+}
+.carousel1 .item .btn i {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.carousel1 .thumb-wrapper {
+    text-align: center;
+}
+.carousel1 .thumb-content {
+    padding: 15px;
+}
+.carousel1 .carousel-controll {
+    height: 100px;
+    width: 40px;
+    background: none;
+    margin: auto 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+.carousel1 .carousel-controll i {
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    margin: -16px 0 0 0;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: none;
+    font-weight: bold;
+}
+.carousel1 .item-price {
+    font-size: 13px;
+    padding: 2px 0;
+}
+.carousel1 .item-price strike {
+    color: #999;
+    margin-right: 5px;
+}
+.carousel1 .item-price span {
+    color: #86bd57;
+    font-size: 110%;
+}
+.carousel1 .carousel-controll.left i {
+    margin-left: -3px;
+}
+.carousel1 .carousel-controll.left i {
+    margin-right: -3px;
+}
+.carousel1 .carousel-indicatorss {
+    bottom: -50px;
+}
+@media(max-width: 1024px){
+    .carousel-indicatorss li, .carousel-indicatorss li.active {
+        display: none;
+    }
+}
+
+
+#button-addon1 {
+  color: #ffc371
+}
+
+i {
+  color: #0000cc;
+  font-size: 20px
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic
+}
+
+.form-control.shadow-0:focus {
+  box-shadow: none
+}
+
+.display-3 {
+  font-family: 'Sanchez', serif
+}
+
+p {
+  font-family: 'Tajawal', sans-serif
+}
+
+.lead {
+  font-family: 'Sanchez 200', serif
+}
+    </style>
+    <title>NawabEditz - {% block title %} {% endblock title %}</title>
+  </head>
+  <body>
+
+    {% include 'includes/navbar.html' %}
+ {% block main-content %} {% endblock main-content %}
+    
+    <!-- Start Footer -->
+    {% comment %} <footer class="container-fluid text-center p-2" id="bg-footer">
+      <small class="text-white">Copyright &copy; 2022 NawabEditz </small>
+    </footer> {% endcomment %}
+
+    {% include 'includes/footer.html' %}
+    <!-- End Footer -->
+    <!-- Jquery -->
+    
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+      <!-- jQuery Custom Scroller CDN -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/all.min.js' %}"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal"
+      });
+          $('#dismiss, .overlay').on('click', function () {
+              $('#sidebar').removeClass('active');
+              $('.overlay').removeClass('active');
+          });
+
+          $('#sidebarCollapse').on('click', function () {
+              $('#sidebar').addClass('active');
+              $('.overlay').addClass('active');
+              $('.collapse.in').toggleClass('in');
+              $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+          });
+      });
+  </script>
+  </body>
+</html>

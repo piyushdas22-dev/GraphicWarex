@@ -1,0 +1,32 @@
+{% extends 'basefile/base.html' %}
+{% load static %}
+{% block title %}Sign In{% endblock title %}
+{% block main-content %}
+<div class="container">
+    <div class="row my-3">
+     <div class="col-sm-6 offset-sm-3">
+      <h3>Login</h3>
+      <hr>
+      <form action="" method="post" class="shadow p-5">
+        {% csrf_token %}
+      <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+          <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %}">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+      
+        {{form}}
+      </div>
+       <div class="text-center text-primary fw-bold"><small><a href="{% url 'password_reset' %}">Forgot Password ?</a></small></div>
+       <input type="submit" class="btn btn-danger m-4" value="Signin">
+       <br>
+       <div class="text-center text-primary fw-bold"><small>New to NawabEditz ? <a href="{% url 'signup' %}"
+        class="text-danger">Create an Account</a> </small></div>
+      </form>
+     </div>
+    </div>
+   </div>
+   <br>
+   <br>
+{% endblock main-content %}

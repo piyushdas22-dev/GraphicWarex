@@ -1,0 +1,33 @@
+{% extends 'basefile/base.html' %}
+{% load static %}
+{% block title %}Contact{% endblock title %}
+{% block main-content %}
+<div class="container">
+    <div class="row my-3">
+     <div class="col-sm-6 offset-sm-3">
+      <h3>Contact</h3>
+      <hr>
+	  {% if messages %}
+	  {% for message in messages%}
+	  <h1 class="alert alert-danger">{{message}}</h1>
+	  {% endfor%}
+	  {% endif %}
+	  <form method="post" enctype='multipart/form-data' action="">
+		  {% csrf_token %}
+		  {{form}}
+<br>
+		  <input name="submit" id="submit" class="btn btn-danger" type="submit" value="Send">
+	  </form>
+</div>
+     </div>
+    </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+{% endblock main-content %}

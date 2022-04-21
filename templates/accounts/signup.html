@@ -1,0 +1,58 @@
+{% extends 'basefile/base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Sign Up</h3>
+   <hr>
+
+   {% if otp %}
+   <form method="POST">
+     {% csrf_token %}
+     <fieldset class="form-group">
+         <legend class="border-bottom display">
+             <h3 class="float-left">Verify Your Email</h3>
+
+         <img src="{% static 'image/favicons.png' %}" class="logo float-right pt-1" width="25">
+         </legend>
+         <input type="hidden" name="usr" value="{{usr.username}}">
+         <div class="input-group mb-3">
+           <div class="input-group-prepend">
+             <span class="input-group-text" id="basic-addon1">OTP</span>
+           </div>
+           <input type="text" class="form-control" placeholder="Enter Your OTP" aria-label="OTP" aria-describedby="basic-addon1" name = 'otp'>
+         </div>
+         
+     </fieldset>
+     <div class="form-grounp">
+         <button class="btn mainbtn" type="submit">Verify</button>
+         <small class="float-right text-muted"><i><a href="#" class="text-dark" 
+           onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i id="resendOTPmess">Resend</i> OTP</a></small>
+
+     </div>
+
+ </form>
+{% else %}
+  <form action="" method="POST" novalidate class="shadow p-5">
+    {% if messages %}
+      {% for message in messages %}
+        <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %}">{{message}}</p>
+      {% endfor %}
+    {% endif %}
+    {% csrf_token %}
+    {% for fm in form %}
+    <div class="form-group mb-3">
+      {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+    </div>
+    {% endfor %}
+    <input type="submit" value="Submit" class="btn btn-primary">
+    <br>
+    <div class="text-center text-primary fw-bold"><small>Existing User ? <a href="{% url 'signin'%}" class="text-danger">Signin Now</a></small></div>
+   </form>
+   {% endif %}
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
