@@ -129,8 +129,8 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
             ><img class="rounded-circle" src="{{ request.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
-             {{request.user.username}}
-          </a>
+            {{request.user.username}}
+         </a>
           <ul class="dropdown-menu" aria-labelledby="profileDropdown">
             <li>
               <a class="dropdown-item" href="{% url 'profile' %}"

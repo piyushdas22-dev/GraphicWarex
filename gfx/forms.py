@@ -16,7 +16,8 @@ class AddUserDesignsForm(forms.ModelForm):
         attrs={'class': 'form-control'}))
     order_link = forms.CharField(
         label='Instagram', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    category = forms.ChoiceField(label='Category', choices=(('UDT', 'Thumbnail'),
+    category = forms.ChoiceField(label='Category', choices=(('--', '------'),
+        ('UDT', 'Thumbnail'),
                                                             ('UDB', 'Banner'),
                                                             ('UDI', 'Intro'),
                                                             ('UDO', 'Outro'),
@@ -40,9 +41,10 @@ class AddUserPacksForm(forms.ModelForm):
         attrs={'class': 'form-control'}))
     dp = forms.IntegerField(label='Discounted Price', widget=forms.NumberInput(
         attrs={'class': 'form-control'}))
-    download_link = forms.CharField(
-        label='Download Link', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    category = forms.ChoiceField(label='Category', choices=(('UGT', 'Thumbnail'),
+    buy_link = forms.CharField(
+        label='Buy Link ( i.e Instagram Link, Shorten Urls, Your Own Website Link Where Users can Buy This Pack, etc )', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    category = forms.ChoiceField(label='Category', choices=(('--', '------'),
+        ('UGT', 'Thumbnail'),
                                                             ('UGB', 'Banner'),
                                                             ('UGI', 'Intro'),
                                                             ('UGO', 'Outro'),
@@ -53,7 +55,7 @@ class AddUserPacksForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['title', 'details', 'image',
-                  'sp', 'dp', 'download_link', 'category']
+                  'sp', 'dp', 'buy_link', 'category']
 
 
 class AddFreePackForm(forms.ModelForm):
@@ -65,7 +67,8 @@ class AddFreePackForm(forms.ModelForm):
         attrs={'class': 'form-control'}))
     download_link = forms.CharField(
         label='Download Link', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    category = forms.ChoiceField(label='Category', choices=(('FPT', 'Thumbnail'),
+    category = forms.ChoiceField(label='Category', choices=(('--', '------'),
+        ('FPT', 'Thumbnail'),
                                                             ('FPB', 'Banner'),
                                                             ('FPI', 'Intro'),
                                                             ('FPO', 'Outro'),
@@ -91,7 +94,8 @@ class AddNawabDesignsForm(forms.ModelForm):
         attrs={'class': 'form-control'}))
     download_link = forms.CharField(
         label='Download Link', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    category = forms.ChoiceField(label='Category', choices=(('NT', 'Thumbnail'),
+    category = forms.ChoiceField(label='Category', choices=(('--', '------'),
+        ('NT', 'Thumbnail'),
                                                             ('NB', 'Banner'),
                                                             ('NI', 'Intro'),
                                                             ('NO', 'Outro'),
@@ -117,7 +121,8 @@ class AddPaidPackForm(forms.ModelForm):
         attrs={'class': 'form-control'}))
     download_link = forms.CharField(
         label='Download Link', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    category = forms.ChoiceField(label='Category', choices=(('PPT', 'Thumbnail'),
+    category = forms.ChoiceField(label='Category', choices=(('--', '------'),
+        ('PPT', 'Thumbnail'),
                                                             ('PPB', 'Banner'),
                                                             ('PPI', 'Intro'),
                                                             ('PPO', 'Outro'),

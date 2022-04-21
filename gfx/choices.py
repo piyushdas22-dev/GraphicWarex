@@ -6,6 +6,7 @@ CHOICES = (
         ('UGP', 'User GFX Pack Poster'),
         ('UGR', 'User GFX Pack Render'),
         ('UGG', 'User GFX Pack GFX Materials'),
+        ('--', '------'),
 
         ('UDT', 'User Designs Thumbnail'),
         ('UDB', 'User Designs Banner'),

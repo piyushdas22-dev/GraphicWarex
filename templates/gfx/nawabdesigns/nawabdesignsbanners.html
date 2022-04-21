@@ -94,11 +94,15 @@
     <img src="{{b.image.url}}" class="card-img-top" alt="video thumbnail">
             <strong class="d-inline-block mb-2 text-primary">Nawab Editz</strong>
             <h3 class="mb-0">{{b.title}}</h3> 
-               <div class="my-2">
-            	<a href="#" role="button" class="btn btn-danger">Click-Here</a>
+            <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{b.sp}}</del> <span class="text-danger">₹{{b.dp}}</span></p>
+            <hr>
+               <div class="text-center">
+                <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
+                <a href="#" role="button" class="btn btn-dark">Buy Now</a>
               {% if request.user.is_superuser or request.user.is_staff%}
               <a class="btn btn-danger" href="{% url "delete-post" b.id%}">Delete</a>
               {% endif %}
+               </div>
             </div>
             </div>
             </div>

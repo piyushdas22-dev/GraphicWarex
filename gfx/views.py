@@ -221,7 +221,7 @@ class PaidPacksGFXMaterialDetails(View):
 
 def delete(request, id=None):
     """Function deletes user's post."""
-    post = get_object_or_404(Product, id=id)
+    post = Product.objects.filter(id=id)
     user = post.user
     if request.user.is_authenticated and user == request.user or request.user.is_superuser or request.user.is_staff:
         post.delete()
@@ -268,6 +268,8 @@ def AddFreePacks(request):
     if request.method == "POST":
         freeform = AddFreePackForm(request.POST, request.FILES)
         if freeform.is_valid() and request.user.is_superuser or request.user.is_staff:
+            freeform = freeform.save(commit=False)
+            freeform.user = request.user
             freeform.save()
             messages.success(request, f'successfully Uploaded the packs')
             return redirect('home')

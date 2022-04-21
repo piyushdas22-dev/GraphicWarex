@@ -93,20 +93,8 @@
       <br>
     </div>
     {% endif %}
-  {% for r in userpacksrender %}
-    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-    <img src="{{r.image.url}}" class="card-img-top" alt="video thumbnail">
-            <strong class="d-inline-block mb-2 text-primary">Nawab Editz</strong>
-            <h3 class="mb-0">{{r.title}}</h3> 
-               <div class="my-2">
-            	<a href="#" role="button" class="btn btn-danger">Click-Here</a>
-              {% if request.user == user and request.user.is_superuser or request.user.is_staff%}
-              <a class="btn btn-danger" href="{% url "delete-post" r.id%}">Delete</a>
-              {% endif %}
-            </div>
-            </div>
-            </div>
+  {% for i in userpacksrender %}
+  {% include 'includes/usercard.html' %}
     {% endfor %}
 </div>
 </div>
