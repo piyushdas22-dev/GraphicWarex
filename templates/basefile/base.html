@@ -47,18 +47,825 @@
   body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+    font-size: 1.4rem !important
 }
 
   
   .wrapper {
     display: block;
 }
+
+#scroll {
+    position:fixed;
+    right:10px;
+    bottom:10px;
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    background-color:#3498db;
+    text-indent:-9999px;
+    display:none;
+    -webkit-border-radius:60px;
+    -moz-border-radius:60px;
+    border-radius:60px
+}
+#scroll span {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-8px;
+    margin-top:-12px;
+    height:0;
+    width:0;
+    border:8px solid transparent;
+    border-bottom-color:#ffffff;
+}
+#scroll:hover {
+    background-color:#e74c3c;
+    opacity:1;filter:"alpha(opacity=100)";
+    -ms-filter:"alpha(opacity=100)";
+}
   p {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.1em;
+      font-size: 1.2em;
       font-weight: 300;
       line-height: 1.7em;
       color: #999;
+  }
+
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500&display=swap");
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Work Sans", sans-serif;
+  }
+  
+  :root {
+    --heading: rgb(0 10 45);
+    --para: #777;
+    --para-tint: #e4e4e4;
+    --white: #fff;
+    --black: #212529;
+    --helper: #8490ff;
+    --overlay: #3e64ff;
+    --helper-tint: #f3f4ff;
+    --bg: rgb(249 249 255);
+    --icons-bg: rgba(144, 172, 209, 0.2);
+    --gradient: linear-gradient(0deg, rgb(132 144 255) 0%, rgb(98 189 252) 100%);
+    --gradientSupport: -webkit-linear-gradient(
+      0deg,
+      rgb(132 144 255) 0%,
+      rgb(98 189 252) 100%
+    );
+    --shadow: 0px 0px 20px 0px rgb(132 144 255 / 20%);
+    --shadowSupport: 0px 20px 20px 0px rgb(132 144 255 / 30%);
+  }
+  
+  html {
+    font-size: 65.5%;
+    /* scroll-behavior: smooth; */
+    /* 1rem = 10px */
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Poppins", sans-serif;
+  }
+  
+  h1 {
+    color: var(--heading);
+    font-size: 6rem;
+    font-weight: 600;
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+  
+  p {
+    color: var(--para);
+    line-height: 1.6;
+    font-size: 1.50rem;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  /* ===========================================
+  Header Section Start
+  ======================================= */
+  
+  .header {
+    padding: 0 4.8rem;
+    height: 10rem;
+    background-color: var(--bg);
+    /* background: red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header .logo {
+    height: 3rem;
+  }
+  
+  .navbar-lists {
+    display: flex;
+    gap: 4.8rem;
+  }
+  
+  .navbar-link:link,
+  .navbar-link:visited {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--black);
+    transition: color 0.3s linear;
+  }
+  
+  .navbar-link:hover,
+  .navbar-link:active {
+    color: var(--helper);
+  }
+  
+  .mobile-navbar-btn {
+    display: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .mobile-nav-icon[name="close-outline"] {
+    display: none;
+  }
+  
+  /* ?sticky navbar  */
+  .sticky .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 1);
+    padding-top: 0;
+    padding-bottom: 0;
+    box-shadow: var(--shadow);
+  }
+  
+  .sticky .section-hero {
+    margin-top: 10rem;
+  }
+  
+  /* ===========================================
+  Resuable Code Section 
+  ======================================= */
+  
+  .section {
+    padding: 4rem 0;
+  }
+  
+  
+  .grid {
+    display: grid;
+    gap: 9rem;
+  }
+  
+  .grid-two-column {
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: 1fr 1fr; */
+  }
+  
+  .grid-three-column {
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: 1fr 1fr; */
+  }
+  
+  .grid-four-column {
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns: 1fr 1fr; */
+  }
+  
+  .btn {
+    background: var(--gradientSupport);
+    {% comment %} padding: 1.6rem 3.2rem; {% endcomment %}
+    border: none;
+    color: var(--helper-tint);
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+  }
+  
+  .btn:hover,
+  .btn:active {
+    /* box-shadow: 0 2rem 2rem 0 rgb(132 144 255 / 30%); */
+    box-shadow: var(--shadowSupport);
+  }
+  
+  .common-heading {
+    font-size: 4.8rem;
+    font-weight: 600;
+    margin-bottom: 6rem;
+    text-transform: capitalize;
+    position: relative;
+  }
+  
+  .common-heading::before {
+    content: "";
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--helper);
+    border-radius: 50%;
+  }
+  
+  .common-heading::after {
+    content: "";
+    position: absolute;
+    top: 118%;
+    left: 1.5rem;
+    min-width: 20rem;
+  
+    height: 0.3rem;
+    background: var(--helper);
+  }
+  
+  /* ===========================================
+  hero Section Start
+  ======================================= */
+  
+  .section-hero {
+    background-color: var(--bg);
+  }
+  
+  .section-hero-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: flex-start; */
+  }
+  
+  .hero-top-data {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--helper);
+  }
+  
+  .hero-heading {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 6.4rem;
+  }
+  
+  .hero-para {
+    margin-top: 1.5rem;
+    margin-bottom: 5rem;
+    max-width: 60rem;
+  }
+  
+  .section-hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  picture {
+    text-align: center;
+  }
+  
+  .hero-img {
+    max-width: 80%;
+  }
+  
+  /* ===========================================
+  BIO Section Start
+  ======================================= */
+  
+  .bio-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bio-image img {
+    width: 80%;
+    box-shadow: -2rem -2rem 0 0 var(--helper);
+    display: inline-block;
+  }
+  
+  .bio-data-stats {
+    display: flex;
+    padding: 6.4rem 0;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .bio-stats h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .bio-progress-bar {
+    width: 90%;
+    height: 0.8rem;
+    background-color: var(--para-tint);
+    border-radius: 10rem;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  
+  .bio-progress-bar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: inherit;
+    background: var(--gradientSupport);
+    border-radius: 10rem;
+  }
+  
+  .bio-progress-2::before {
+    width: 99%;
+  }
+  
+  .bio-progress-3::before {
+    width: 90%;
+  }
+  
+  .bio-progress-4::before {
+    width: 85%;
+  }
+  
+  .bio-progress-5::before {
+    width: 70%;
+  }
+  
+  .bio-progress-bar span {
+    position: absolute;
+    top: 1.8rem;
+    width: 4rem;
+    height: 2rem;
+    background: var(--helper);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: 0;
+  }
+  
+  .bio-progress-bar span {
+    left: 76%;
+  }
+  
+  .bio-progress-2 span {
+    left: 95%;
+  }
+  
+  .bio-progress-3 span {
+    left: 86%;
+  }
+  
+  .bio-progress-4 span {
+    left: 81%;
+  }
+  
+  .bio-progress-5 span {
+    left: 66%;
+  }
+  
+  /* to create a caret  */
+  .bio-progress-bar span::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0.8rem solid var(--helper);
+    border-color: transparent;
+    border-bottom-color: var(--helper);
+    top: -1.6rem;
+  }
+  /* ===========================================
+  porfolio Section Start
+  ======================================= */
+  .section-portfolio {
+    background: var(--bg);
+    transition: all 0.7s linear;
+  }
+  
+  .section-portfolio p {
+    max-width: 60rem;
+  }
+  
+  .p-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3.2rem;
+    margin-top: 6.4rem;
+    margin: 6.4rem 0;
+  }
+  
+  .portfolio-images {
+    gap: 3.2rem;
+    /* margin-top: 6.4rem; */
+  }
+  
+  .portfolio-images img {
+    width: 100%;
+    border-radius: 7px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .img-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .img-overlay .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradientSupport);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(100%);
+    transition: all 0.3s linear;
+    border-radius: 7px;
+  }
+  
+  .img-overlay:hover > .overlay {
+    transform: translateY(0);
+    opacity: 0.8;
+    cursor: pointer;
+  }
+  
+  .img-overlay .common-heading {
+    margin: 0;
+    color: var(--white);
+    text-decoration: none;
+  }
+  
+  .p-btn-active {
+    transform: translateY(-1rem);
+  }
+  
+  .p-image-not-acitve {
+    display: none;
+  }
+  
+  
+  /* ===========================================
+  work data Section Start
+  ======================================= */
+  
+  .section-work-data {
+    background: var(--gradientSupport);
+    text-align: center;
+    transition: all 0.7s linear;
+    color: var(--white);
+  }
+  
+  .counter-numbers {
+    font-size: 4.8rem;
+  }
+  
+  .section-work-data p {
+    color: var(--white);
+    text-transform: capitalize;
+  }
+  /* ===========================================
+  work data Section Start
+  ======================================= */
+  
+  .section-work-data {
+    background: var(--gradientSupport);
+    text-align: center;
+    transition: all 0.7s linear;
+    color: var(--white);
+    opacity: 80%;
+  }
+  
+  .counter-numbers {
+    font-size: 4.8rem;
+  }
+  
+  .section-work-data p {
+    color: var(--white);
+    text-transform: capitalize;
+  }
+  
+  
+  /* ===========================================
+  our swiper Section Start
+  ======================================= */
+  
+  .swiper {
+    width: 100%;
+    height: 100%;
+    margin-top: 9rem;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    margin-bottom: 8rem;
+  }
+  
+  .swiper-client-msg {
+    padding: 5rem 8rem;
+    background: var(--white);
+    border-radius: 1rem;
+    text-align: left;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  
+  .swiper-client-msg::before {
+    content: "";
+    position: absolute;
+    bottom: -10rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5rem solid var(--white);
+    border-color: transparent;
+    border-top-color: var(--helper-tint);
+  }
+  
+  .swiper-client-msg p::before {
+    content: "\f10d";
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    font-size: 5rem;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #ced3ff;
+  }
+  
+  .swiper-client-msg p::after {
+    content: "\f10e";
+    position: absolute;
+    bottom: 0;
+    right: 3rem;
+    font-size: 5rem;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #ced3ff;
+  }
+  
+  .swiper-client-data {
+    align-items: center;
+    margin-top: 3.2rem;
+    gap: 3.2rem;
+  }
+  
+  .swiper-slide img {
+    max-width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    border: 0.5rem solid var(--helper-tint);
+  }
+  
+  /* ===========================================
+  Freelancing Section Start
+  ======================================= */
+  
+  .section-freelancing {
+    background-image: url("../images/folio/3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    position: relative;
+    transition: all 0.7s linear;
+    text-align: center;
+  }
+  
+  .section-freelancing .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay);
+    opacity: 0.7;
+  }
+  
+  .section-freelancing .container {
+    position: relative;
+  }
+  
+  .section-freelancing h2 {
+    font-size: 5.4rem;
+  }
+  
+  .section-freelancing span {
+    color: #a0f669;
+  }
+  
+  .section-freelancing h2,
+  .section-freelancing p {
+    color: var(--white);
+    margin-bottom: 1.8rem;
+  }
+  
+  /* ===========================================
+  contact Section Start
+  ======================================= */
+  
+  .section-contact-main {
+    max-width: 70rem;
+    margin: 0 auto;
+    margin-top: 9rem;
+    transition: all 0.3s linear;
+  }
+  
+  .section-contact-main .grid {
+    gap: 3.2rem;
+  }
+  
+  .section-contact-main form {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+  }
+  
+  .section-contact-main input,
+  .section-contact-main textarea {
+    padding: 1.5rem 2rem;
+    border: 0.1rem solid #c9c9c9;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    font-family: "work sans";
+    width: 100%;
+  }
+  
+  .section-contact-main input[type="submit"] {
+    max-width: 30%;
+    border: none;
+  }
+  
+  /* ===========================================
+  Footer Section Start
+  ======================================= */
+  
+  .section-footer {
+    background: var(--heading);
+    transition: all 0.7s linear;
+  }
+  
+  .section-footer h3 {
+    color: var(--white);
+    margin-bottom: 4rem;
+  }
+  
+  .f-about p {
+    color: #adadad;
+  }
+  
+  .f-links ul,
+  .f-services ul,
+  .f-address address {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    justify-content: center;
+  }
+  
+  .f-links li,
+  .f-links a,
+  .f-services li,
+  .f-services a {
+    font-size: 1.8rem;
+    color: #adadad;
+    text-transform: capitalize;
+  }
+  
+  .f-links span,
+  .f-services span,
+  .f-address span {
+    margin-right: 1rem;
+  }
+  
+  .f-address p,
+  .f-address p a {
+    font-style: normal;
+    color: #adadad;
+  }
+  
+  .f-social-icons {
+    margin: 5rem 0;
+    text-align: center;
+    color: #adadad;
+  }
+  
+  .f-social-icons .icons {
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--icons-bg);
+    display: inline-block;
+    padding: 1.4rem 1.8rem;
+    position: relative;
+    color: var(--white);
+    animation: water-wave 3s linear infinite;
+    cursor: pointer;
+  }
+  
+  .f-credits p {
+    text-align: center;
+    color: #adadad;
+  }
+  
+  .footer a:hover,
+  .footer a:active {
+    color: var(--white);
+  }
+  
+  /* ===========================================
+  Scroll Section Start
+  ======================================= */
+  
+  .scrollTop-style {
+    position: fixed;
+    right: 2%;
+    bottom: 5%;
+    z-index: 1;
+  }
+  
+  .scroll-top {
+    width: 4rem;
+    height: 4rem;
+    background: var(--helper);
+    display: inline-block;
+    padding: 1.4rem 1.8rem;
+    position: relative;
+    color: var(--white);
+    animation: water-wave 3s linear infinite;
+    cursor: pointer;
+  }
+  
+  /* ===========================================
+  /* media queries  
+  ======================================= */
+  /* px  */
+  /* rem  */
+  /* em  */
+  /* 1500px */
+  @media (max-width: 95em) {
+    .container {
+      max-width: 130rem;
+      padding: 0 3.2rem;
+    }
+  
+    .navbar-lists {
+      gap: 3.4rem;
+    }
   }
 
   a,
@@ -172,7 +979,7 @@
   }
   
   ul ul a {
-      font-size: 0.9em !important;
+      font-size: 1.2em !important;
       padding-left: 30px !important;
       background: #6d7fcc;
   }
@@ -189,6 +996,48 @@
       margin-bottom: 5px;
   } {% endcomment %}
 
+
+  /* ===========================================
+  Freelancing Section Start
+  ======================================= */
+  
+  .section-freelancing {
+    background-image: url("static/image/bg1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    position: relative;
+    transition: all 0.7s linear;
+    text-align: center;
+  }
+  
+  .section-freelancing .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay);
+    opacity: 0.7;
+  }
+  
+  .section-freelancing .container {
+    position: relative;
+  }
+  
+  .section-freelancing h2 {
+    font-size: 5.4rem;
+  }
+  
+  .section-freelancing span {
+    color: #a0f669;
+  }
+  
+  .section-freelancing h2,
+  .section-freelancing p {
+    color: var(--white);
+    margin-bottom: 1.8rem;
+  }
   /* ---------------------------------------------------
       CONTENT STYLE
   ----------------------------------------------------- */
@@ -420,6 +1269,207 @@ p {
               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
           });
       });
+      const heroSection = document.querySelector(".section-hero");
+
+// ========================================
+// creating a responsive navbar component
+// ========================================
+
+const mobile_nav = document.querySelector(".mobile-navbar-btn");
+const headerElem = document.querySelector(".header");
+
+mobile_nav.addEventListener("click", () => {
+  headerElem.classList.toggle("active");
+});
+
+// ========================================
+// creating a sticky responsive navbar component
+// ========================================
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    const ent = entries[0];
+    console.log(ent);
+    !ent.isIntersecting
+      ? document.body.classList.add("sticky")
+      : document.body.classList.remove("sticky");
+  },
+  {
+    root: null,
+    threshold: 0,
+  }
+);
+
+observer.observe(heroSection);
+
+// ========================================
+// creating a portfolio tabbed component
+// ========================================
+
+const p_btns = document.querySelector(".p-btns");
+const p_btn = document.querySelectorAll(".p-btn");
+const p_img_elem = document.querySelectorAll(".img-overlay");
+
+p_btns.addEventListener("click", (e) => {
+  const p_btn_clicked = e.target;
+  console.log(p_btn_clicked);
+
+  if (!p_btn_clicked.classList.contains("p-btn")) return;
+
+  p_btn.forEach((curElem) => curElem.classList.remove("p-btn-active"));
+
+  p_btn_clicked.classList.add("p-btn-active");
+
+  // to find the number in data attr
+  const btn_num = p_btn_clicked.dataset.btnNum;
+  console.log(btn_num);
+
+  const img_active = document.querySelectorAll(`.p-btn--${btn_num}`);
+
+  p_img_elem.forEach((curElem) => curElem.classList.add("p-image-not-acitve"));
+
+  img_active.forEach((curElem) =>
+    curElem.classList.remove("p-image-not-acitve")
+  );
+});
+
+// swiper js code
+
+new Swiper(".mySwiper", {
+  slidesPerView: 2,
+  spaceBetween: 30,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
+
+const myJsmedia = (widthSize) => {
+  if (widthSize.matches) {
+    new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+    });
+  } else {
+    new Swiper(".mySwiper", {
+      slidesPerView: 2,
+      spaceBetween: 30,
+    });
+  }
+};
+
+const widthSize = window.matchMedia("(max-width: 780px)");
+// Call listener function at run time
+myJsmedia(widthSize);
+// Attach listener function on state changes
+widthSize.addEventListener("change", myJsmedia);
+
+// scrooll to top button
+
+const footerElem = document.querySelector(".section-footer");
+
+const scroollElement = document.createElement("div");
+scroollElement.classList.add("scrollTop-style");
+
+scroollElement.innerHTML = `<ion-icon name="arrow-up-outline" class="scroll-top"></ion-icon>`;
+
+footerElem.after(scroollElement);
+
+const scrollTop = () => {
+  heroSection.scrollIntoView({ behavior: "smooth" });
+};
+
+scroollElement.addEventListener("click", scrollTop);
+
+// smooth scrolling effects
+
+const portfolioSec = document.querySelector(".section-portfolio");
+const contactSec = document.querySelector(".section-contact");
+
+document.querySelector(".portfolio-link").addEventListener("click", () => {
+  portfolioSec.scrollIntoView({ behavior: "smooth" });
+});
+
+document.querySelector(".hireme-btn").addEventListener("click", (e) => {
+  e.preventDefault();
+  contactSec.scrollIntoView({ behavior: "smooth" });
+});
+
+const workSection = document.querySelector(".section-work-data");
+const workObserver = new IntersectionObserver(
+  (entries, observer) => {
+    const [entry] = entries;
+    // console.log(entry);
+
+    // if (entry.isIntersecting == false)
+    if (!entry.isIntersecting) return;
+
+    // animate number counter
+
+    const counterNum = document.querySelectorAll(".counter-numbers");
+
+    const speed = 200;
+
+    counterNum.forEach((curElem) => {
+      const updateNumber = () => {
+        const targetNumber = parseInt(curElem.dataset.number);
+        // console.log(targetNumber);
+        const initialNum = parseInt(curElem.innerText);
+        // console.log(initialNum);
+
+        const incrementNumber = Math.trunc(targetNumber / speed);
+        // console.log(incrementNumber);
+
+        if (initialNum < targetNumber) {
+          curElem.innerText = `${initialNum + incrementNumber}+`;
+          setTimeout(updateNumber, 10);
+        }
+      };
+
+      updateNumber();
+    });
+
+    observer.unobserve(workSection);
+  },
+  {
+    root: null,
+    threshold: 0,
+  }
+);
+
+workObserver.observe(workSection);
+
+var speed = 10;
+
+/* Call this function with a string containing the ID name to
+ * the element containing the number you want to do a count animation on.*/
+function incEltNbr(id) {
+  elt = document.getElementById(id);
+  endNbr = Number(document.getElementById(id).innerHTML);
+  incNbrRec(0, endNbr, elt);
+}
+
+/*A recursive function to increase the number.*/
+function incNbrRec(i, endNbr, elt) {
+  if (i <= endNbr) {
+    elt.innerHTML = i;
+    setTimeout(function() {//Delay a bit before calling the function again.
+      incNbrRec(i + 1, endNbr, elt);
+    }, speed);
+  }
+}
+
+/*Function called on button click*/
+function incNbr(){
+  incEltNbr("nbr");
+}
+
+incEltNbr("nbr"); /*Call this funtion with the ID-name for that element to increase the number within*/
+
   </script>
   </body>
 </html>

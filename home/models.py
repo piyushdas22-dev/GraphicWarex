@@ -1,4 +1,5 @@
 import email
+from statistics import mode
 from django.db import models
 from PIL import Image
 # Create your models here.
@@ -27,3 +28,9 @@ class Category(models.Model):
 
 	def __str__(self) -> str:
 		return self.name
+
+class HomeNumber(models.Model):
+	partners = models.IntegerField(default=5)
+	packs = models.IntegerField(default=100)
+	monthly = models.IntegerField(default=30000)
+	daily = models.IntegerField(default=1000)

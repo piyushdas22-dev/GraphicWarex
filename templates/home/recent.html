@@ -1,0 +1,36 @@
+{% extends 'basefile/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block main-content %}
+{% if recent|length < 1 %}
+<br>
+{% else %}
+<div class="container mb-2 mt-5">
+  <h2 class="text-center">Recent Posts</h2>
+  <br>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for c in recent|slice:"6" %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
+          <div class="card-body">
+            <h5 class="card-title">{{c.title}}</h5>
+            <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{c.sp}}</del> <span class="text-danger">₹{{c.dp}}</span></p>
+            <hr>
+            <img class="rounded-circle" src="{{ c.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
+            Designer: {{c.user}} 
+            
+          </a>
+          <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
+          <div class="text-center">
+            <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
+            <a href="#" role="button" class="btn btn-dark">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endblock main-content %}

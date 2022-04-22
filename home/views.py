@@ -2,7 +2,7 @@ from unicodedata import category
 from django import views
 from django.shortcuts import render
 from accounts.models import Profile
-from .models import Category, Slider, TrendingSlider
+from .models import Category, HomeNumber, Slider, TrendingSlider
 from gfx.models import Product
 from .forms import ContactForm
 from django.shortcuts import redirect, render
@@ -18,7 +18,17 @@ def home(request):
     recent = Product.objects.filter(is_deleted=False).order_by("-date_uploaded")
     sliders = Slider.objects.all()
     Trendingslider = TrendingSlider.objects.all()
-    return render(request, 'home/home.html', {'sliders': sliders, 'Trendingslider': Trendingslider, 'trends': trends, 'recent': recent})
+    number = HomeNumber.objects.all()
+    return render(request, 'home/home.html', {'sliders': sliders, 'Trendingslider': Trendingslider, 'trends': trends, 'recent': recent, 'number': number})
+
+def recent(request):
+    recent = Product.objects.filter(is_deleted=False).order_by("-date_uploaded")
+    return render(request, 'home/recent.html', {'recent': recent})
+
+def trending(request):
+    trends = Product.objects.filter(views__gte = 100,is_deleted=False).order_by("-views")
+    Trendingslider = TrendingSlider.objects.all()
+    return render(request, 'home/trending.html', {'Trendingslider': Trendingslider, 'trends': trends})
 
 
 def about(request):

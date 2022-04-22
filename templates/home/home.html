@@ -48,40 +48,81 @@
     </div>
     {% endfor %}
   </div>
-  <hr>
 </div>
+<div class="container text-center my-4">
+  <a href="{% url 'trending' %}" class="btn">View More</a>
+  </div>
 {% endif %}
-{% if recent|length < 1 %}
-<br>
-{% else %}
-<div class="container mb-4">
-  <h2 class="text-center">Recent Posts</h2>
+<div class="container">
+  <section class="section section-freelancing">
+    <div class="overlay"></div>
+    <div class="container">
+      <h2>The <span>Best</span> Website For GFX Pack</h2>
+      <p>
+        We provide a platform for graphics designers to buy, sell and explore different packs.Designers can Upload and buy packs / designs as easy as writing the letter "l"
+      </p>
+      <a href="{% url 'paidthumbnailpacks' %}" class="btn">Shop</a>
+    </div>
+  </section>
+  </div>
+  {% if recent|length < 1 %}
   <br>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for c in recent|slice:"6" %}
-        <div class="col">
-          <div class="card h-100">
-            <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
-          <div class="card-body">
-            <h5 class="card-title">{{c.title}}</h5>
-            <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{c.sp}}</del> <span class="text-danger">₹{{c.dp}}</span></p>
-            <hr>
-            <img class="rounded-circle" src="{{ c.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
-            Designer: {{c.user}} 
-            
-          </a>
-          <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
-          <div class="text-center">
-            <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
-            <a href="#" role="button" class="btn btn-dark">Buy Now</a>
+  {% else %}
+  <div class="container mb-2 mt-5">
+    <h2 class="text-center">Recent Posts</h2>
+    <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+          {% for c in recent|slice:"6" %}
+          <div class="col">
+            <div class="card h-100">
+              <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{c.title}}</h5>
+              <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{c.sp}}</del> <span class="text-danger">₹{{c.dp}}</span></p>
+              <hr>
+              <img class="rounded-circle" src="{{ c.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
+              Designer: {{c.user}} 
+              
+            </a>
+            <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
+            <div class="text-center">
+              <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
+              <a href="#" role="button" class="btn btn-dark">Buy Now</a>
+            </div>
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
+  <div class="container text-center my-4">
+    <a href="{% url 'recent' %}" class="btn">View More</a>
+    </div>
+  {% endif %}
+<div class="container">
+<section class="section section-work-data">
+  <div class="container grid grid-four-column">
+    <div>
+      <h2 class="counter-numbers" data-number="2000">{{number.0.partners}}+</h2>
+      <p>partners</p>
+    </div>
+    <div>
+      <h2 class="counter-numbers" data-number="6000">{{number.0.packs}}+</h2>
+      <p>Packs</p>
+    </div>
+    <div>
+      <h2 class="counter-numbers" data-number="5000">{{number.0.monthly}}+</h2>
+      <p>Monthly Traffic</p>
+    </div>
+    <div>
+      <h2 class="counter-numbers" data-number="3000">{{number.0.daily}}+</h2>
+      <p>Daily Traffic</p>
+    </div>
+  </div>
+</section>
 </div>
-{% endif %}
+
+
   {% endblock main-content %}
   
   
