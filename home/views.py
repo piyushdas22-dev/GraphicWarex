@@ -15,9 +15,10 @@ from .forms import *
 
 def home(request):
     trends = Product.objects.filter(views__gte = 100,is_deleted=False).order_by("-views")
+    recent = Product.objects.filter(is_deleted=False).order_by("-date_uploaded")
     sliders = Slider.objects.all()
     Trendingslider = TrendingSlider.objects.all()
-    return render(request, 'home/home.html', {'sliders': sliders, 'Trendingslider': Trendingslider, 'trends': trends})
+    return render(request, 'home/home.html', {'sliders': sliders, 'Trendingslider': Trendingslider, 'trends': trends, 'recent': recent})
 
 
 def about(request):
