@@ -2,13 +2,46 @@
 {% load static %}
 {% block title %}Profile{% endblock title %}
 {% block main-content %}
+
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+      <div id="dismiss">
+          <i class="fas fa-arrow-left"></i>
+      </div>
+
+      <div class="sidebar-header mb-3">
+          <h3>NawabEditz</h3>
+      </div>
+
+      <ul class="list-unstyled text-center">
+
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><a class="text-dark fw-bold" href="{% url 'profile' %}">Profile</a></a>
+
+      </ul>
+      <hr class="text-dark">
+      
+      <ul class="list-unstyled text-center ">
+        
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><a class="text-dark" href="{% url 'changepassword' %}">Change Password</a></a>
+        <hr class="text-dark">
+        
+      </ul>
+      
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+
+          <button type="button" id="sidebarCollapse" class="btn btn-dark">
+              <i class="fas fa-align-left"></i>
+          </button>
+          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fas fa-align-justify"></i>
+          </button>
+      </div>
+  </nav>
 <div class="container my-5">
   <div class="row">
-    <div class="col-sm-2 border-end">
-      <ul class="list-unstyled">
-        <li class="d-grid"><a href="{% url 'profile' %}" class="btn btn-primary">Profile</a></li>
-        <li class="d-grid"><a href="{% url 'changepassword' %}" class="btn">Change Password</a></li>
-      </ul>
     </div>
     <div class="col-sm-8 offset-sm-1">
      <h3 class="alert alert-info">{{request.user.username}}'s Profile: </h3>
@@ -24,7 +57,7 @@
 {{form}}
 {{user_form}}
                   <div class="col-12 mt-3 mb-3">
-                    <button type="submit" class="btn btn-danger">Save</button>
+                    <button type="submit" class="btn btn-danger">Update</button>
                   </div>
 
       </form>
