@@ -137,12 +137,12 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_HOST = os.environ.get("DJANGO_STATIC_HOST", "")
-STATIC_URL = STATIC_HOST + "/static/"
+STATIC_URL = "/static/"
 MEDIA_ROOT = "media"
 MEDIA_URL = "/media/"
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
