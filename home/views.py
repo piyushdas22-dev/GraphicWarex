@@ -12,7 +12,6 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-@login_required(login_url="signin")
 def home(request):
     trends = Product.objects.filter(views__gte = 100,is_deleted=False).order_by("-views")
     recent = Product.objects.filter(is_deleted=False).order_by("-date_uploaded")
