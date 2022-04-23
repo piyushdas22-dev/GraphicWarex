@@ -9,7 +9,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from .forms import AddNawabDesignsForm, AddUserDesignsForm, AddUserPacksForm, AddFreePackForm, AddPaidPackForm
+from .forms import AddNawabDesignsForm, AddUserProductForm, AddFreePackForm, AddPaidPackForm
 
 
 def thumbnails(request):
@@ -234,19 +234,23 @@ def delete(request, pk):
             request, "You can't delete this upload, looks like this upload does'nt belongs to you.")
     return redirect('home')
 
+def uploaded_posts(request):
+	product = Product.objects.filter(user = request.user, is_deleted=False)
+	return render(request, 'accounts/user_upload.html', {'product': product})
+    
 def AddUserPacks(request):
     if request.method == "POST":
-        userform = AddUserPacksForm(request.POST, request.FILES)
+        userform = AddUserProductForm(request.POST, request.FILES)
         if userform.is_valid():
             userpacks = userform.save(commit=False)
-            product.user.username = request.user.username
+            userpacks.user = request.user
             userpacks.save()
             messages.success(request, f'Successfully Uploaded the post')
             return redirect('home')
         else:
-            messages.info("Something is wrong, Try Again")
+            messages.info(request,"Something is wrong, Try Again")
     else:
-        userform = AddUserPacksForm()
+        userform = AddUserProductForm()
     return render(request, "gfx/post/post.html", {'form': userform})
 
 
@@ -297,7 +301,7 @@ def AddNawabDesigns(request):
 
 def AddUserDesigns(request):
     if request.method == "POST":
-        userform = AddUserDesignsForm(request.POST, request.FILES)
+        userform = AddUserProductForm(request.POST, request.FILES)
         if userform.is_valid():
             userdesigns = userform.save(commit=False)
             userdesigns.user = request.user
@@ -307,5 +311,27 @@ def AddUserDesigns(request):
         else:
             messages.info("Something is wrong, Try Again")
     else:
-        userform = AddUserDesignsForm()
+        userform = AddUserProductForm()
     return render(request, "gfx/post/post.html", {'form': userform})
+
+def editpost(request, id):
+        obj= get_object_or_404(Product, id=id)
+        
+        form = AddFreePackForm(request.POST or None, instance= obj)
+        context= {'form': form}
+
+        if form.is_valid():
+                obj= form.save(commit= False)
+
+                obj.save()
+
+                messages.success(request, "You successfully updated the post")
+
+                context= {'form': form}
+
+                return render(request, 'gfx/post/editpost.html', context)
+
+        else:
+                context= {'form': form,
+                           'error': 'The form was not updated successfully. Please enter in a title and content'}
+                return render(request,'gfx/post/editpost.html' , context)

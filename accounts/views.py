@@ -1,3 +1,4 @@
+from math import prod
 import re
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib import messages 
@@ -20,6 +21,7 @@ from .forms import *
 from django.contrib.auth import update_session_auth_hash
 from .helpers import send_forget_password_mail
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
+from gfx.models import Product
 
 # Create your views here.
 
@@ -152,6 +154,7 @@ def profile(request):
 		form = UsernameForm(instance=request.user)
 		user_form = ProfileForm(instance=request.user.profile)
 	return render(request, 'accounts/profile.html', {'form': form, 'user_form': user_form})
+
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):

@@ -53,4 +53,6 @@ urlpatterns = [
     path('paidpacks/post/', views.AddPaidPacks, name="paidpackspost"),
 
     path("delete/<int:pk>/", views.delete, name="delete-post"),
+    path('your-posts/', views.uploaded_posts, name="userposts"),
+    path('editpost/<id>', views.editpost, name="editpost"),
 ]

@@ -27,12 +27,14 @@
         <hr class="text-dark">
         
       </ul>
+      
       <ul class="list-unstyled text-center ">
         
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><a class="text-dark" href="{% url 'userposts' %}">Uploads</a></a>
         <hr class="text-dark">
         
       </ul>
+      
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -44,41 +46,32 @@
               <i class="fas fa-align-justify"></i>
           </button>
       </div>
-  </nav>
-<div class="container my-5">
-  <div class="row">
-    </div>
-    <div class="col-sm-8 offset-sm-1">
-     <h3 class="alert alert-info">{{request.user.username}}'s Profile: </h3>
-     {% if request.user.is_authenticated %}
-     <div class="form-content">
-      {% if messages %}
-      {% for message in messages %}
-        <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %}">{{message}}</p>
-      {% endfor %}
-    {% endif %}
-      <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-{{form}}
-{{user_form}}
-                  <div class="col-12 mt-3 mb-3">
-                    <button type="submit" class="btn btn-danger">Update</button>
-                  </div>
+    </nav>
 
-      </form>
-  </div>
-    </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    {% else %}
-    <h3 class="alert alert-warning">No Profile found, <a class="text-danger text-bold" href="{% url 'signup' %}">please create one<a/></h3>
-    {% endif %}
-   </form>
-  </div>
- </div>
-</div>
+{% if product %}
+<div class="container">
+    <h3>Your Uploads:</h3>
+    {% for b in product %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+    <img src="{{b.image.url}}" class="card-img-top" alt="video thumbnail">
+            <strong class="d-inline-block mb-2 text-primary">Nawab Editz</strong>
+            <h3 class="mb-0">{{b.title}}</h3> 
+            <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{b.sp}}</del> <span class="text-danger">₹{{b.dp}}</span></p>
+            <hr>
+               <div class="text-center">
+                <a href="https://{{b.order_link}}" target="_blank" role="button" class="btn btn-dark">Buy Now</a>
+                <a class="btn btn-danger" href="{% url "delete-post" b.id%}">Delete</a>
+                <a class="btn btn-danger" href="{% url "editpost" b.id %}">Edit Post</a>
+               </div>
+            </div>
+            </div>
+            {% endfor %}
+          </div>
+          </div>
+{% else %}
+<h2 class="text-center">You don't have any uploads yet...</h2>
+<br>
+<br>
+{% endif %}
 {% endblock main-content %}
