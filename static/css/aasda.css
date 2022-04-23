@@ -1,0 +1,22 @@
+.bg-grey {
+    background-color: #131A22;
+}
+
+.btt-text {
+    text-decoration: none;
+    font-size: medium;
+}
+
+#bg-footer {
+    background-color: #0F1111;
+    font-size: larger;
+    font-size: larger;
+}
+
+
+.navbar-nawab img {
+    width: 39px;
+    height: 39px;
+    max-width: 39px;
+    margin: 0 13px;
+}

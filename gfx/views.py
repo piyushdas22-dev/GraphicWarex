@@ -4,7 +4,7 @@ from unicodedata import category
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views import View
-from .models import Product
+from .models import *
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -335,3 +335,14 @@ def editpost(request, id):
                 context= {'form': form,
                            'error': 'The form was not updated successfully. Please enter in a title and content'}
                 return render(request,'gfx/post/editpost.html' , context)
+
+def category_list(request):
+    data=Category.objects.all().order_by('-id')
+    return render(request,'shop/category_list.html',{'data':data})
+
+def category_product_list(request,cat_id):
+	category=SubCategory.objects.get(id=cat_id)
+	data=Product.objects.filter(cat=category).order_by('-id')
+	return render(request,'shop/category_product_list.html',{
+			'data':data,
+			})

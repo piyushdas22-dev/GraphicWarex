@@ -1,6 +1,4 @@
 {% load static %}
-
-{% if request.user.is_authenticated %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="backtotop">
   <div class="container">
     <a
@@ -30,9 +28,8 @@
           </svg> Home </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'contact' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi mright-2 mb-1 bi-house-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+          <a class="nav-link active" aria-current="page" href="{% url 'contact' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
           </svg> Contact </a>
         </li>
         <li class="nav-item dropdown">
@@ -95,7 +92,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item">
+        {% comment %} <li class="nav-item">
           <a
           class="nav-link active"
           aria-current="page"
@@ -104,7 +101,7 @@
             <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
           </svg> About</a
           >
-        </li>
+        </li> {% endcomment %}
       </ul>
       <form class="d-flex m-2">
         <input
@@ -120,6 +117,12 @@
       {% if request.user.is_authenticated %}
       <div>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item ml-4 mt-1">
+<a class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+</svg></a>
+          </li>
           <li class="nav-item dropdown mx-2">
             <a
             class="nav-link dropdown-toggle text-dark"
@@ -192,179 +195,3 @@
       </div>
     </div>
 </nav>
-{% else %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="backtotop">
-  <div class="container">
-    <a
-    href="https://www.youtube.com/channel/UC1sAUaBn2Gf69MtlcJCB9Yg"
-    class="navbar-nawab font mr-2"
-    target="_blank"
-    ><img src="{% static 'image/favico.png' %}"
-    /></a>
-    <a class="navbar-brand nawab-font" href="/">NawabEditz</a>
-    <button
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/"> Home </a>
-          </li>
-        <li class="nav-item dropdown">
-          <a
-          class="nav-link dropdown-toggle text-dark"
-          href="#"
-          id="gfxdesignDropdown"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          >
-          GFX 
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="gfxdesignDropdown">
-            <li>
-              <a class="dropdown-item" href="{% url 'thumbnails' %}"
-              >Nawab Designs</a
-              >
-            </li>
-            <li>
-              <a
-              class="dropdown-item"
-                href="{% url 'userdesignsthumbnails' %}"
-                >User Designs</a
-                >
-              </li>
-            </ul>
-          </li>
-        <li class="nav-item dropdown">
-          <a
-          class="nav-link dropdown-toggle text-dark"
-          href="#"
-          id="gfxpacksDropdown"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          >
-             GFXPacks 
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="gfxpacksDropdown">
-              <li>
-              <a class="dropdown-item" href="{% url 'paidthumbnailpacks' %}"
-              >Paid Packs</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="{% url 'freepacksthumbnail' %}"
-              >Free Packs</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="{% url 'userpacksthumbnail' %}"
-              >User Packs</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a
-          class="nav-link active"
-          aria-current="page"
-          href="{% url 'about'%}"
-          > About</a
-          >
-        </li>
-      </ul>
-      <form class="d-flex m-2">
-        <input
-        class="form-control me-2"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-        />
-      </form>
-        <button class="btn btn-warning" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg></button>
-      {% if request.user.is_authenticated %}
-      <div>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown mx-2">
-            <a
-            class="nav-link dropdown-toggle text-dark"
-            href="#"
-            id="profileDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            >
-            {{request.user.username}}
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-            <li>
-              <a class="dropdown-item" href="{% url 'profile' %}"
-              >Profile</a
-              >
-              </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'changepassword' %}"
-                  >Change Password</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'signout' %}">Signout</a>
-                </li>
-            </ul>
-          </li>
-          {% else %}
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown mx-2">
-              <a
-              class="nav-link dropdown-toggle text-dark"
-              href="#"
-              id="profileDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              >
-              Social Media
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-              <li>
-                <a class="dropdown-item" href="//www.youtube.com/channel/UC1sAUaBn2Gf69MtlcJCB9Yg" target="_blank">Youtube</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="https://discord.com/"
-                  target="_blank">Discord</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="https://www.instagram.com/" target="_blank">Instagram</a>
-                </li>
-              </ul>
-            </li>
-          <li class="nav-item mx-2">
-            <a href="{% url 'signin' %}" class="nav-link text-dark"
-              >SignIn</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'signup' %}" class="nav-link text-dark"
-              >SignUp</a
-              >
-            </li>
-            {%endif%}
-          </ul>
-        </div>
-      </div>
-    </div>
-</nav>
-{% endif %}

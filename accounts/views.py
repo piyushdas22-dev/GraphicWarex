@@ -169,3 +169,7 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     template_name = 'accounts/change_password.html'
     success_message = "Successfully Changed Your Password"
     success_url = reverse_lazy('changepassword')
+
+def seller(request, id):
+    seller = get_object_or_404(User, pk=id)
+    return render(request, 'vendor/vendor.html', {'seller':seller})

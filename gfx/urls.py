@@ -55,4 +55,7 @@ urlpatterns = [
     path("delete/<int:pk>/", views.delete, name="delete-post"),
     path('your-posts/', views.uploaded_posts, name="userposts"),
     path('editpost/<id>', views.editpost, name="editpost"),
+
+    path('category-list',views.category_list,name='category-list'),
+    path('category-product-list/<int:cat_id>',views.category_product_list,name='category-product-list'),
 ]

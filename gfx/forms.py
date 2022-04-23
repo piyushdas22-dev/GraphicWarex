@@ -18,7 +18,7 @@ class AddUserProductForm(forms.ModelForm):
         attrs={'class': 'form-control'}))
     dp = forms.IntegerField(label='Discounted Price', widget=forms.NumberInput(
         attrs={'class': 'form-control'}))
-    order_link = forms.CharField(
+    download_link = forms.CharField(
         label='Buy Link ( i.e Instagram Link, Shorten Urls, Your Own Website Link Where Users can Buy This Pack or order for your Design )', widget=forms.TextInput(attrs={'class': 'form-control'}))
     category = forms.ChoiceField(label='Category', choices=(('--', '------'),
         ('UGT', 'Thumbnail'),
@@ -38,7 +38,7 @@ class AddUserProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['user', 'title', 'details', 'image',
-                  'sp', 'dp', 'order_link', 'category']
+                  'sp', 'dp', 'download_link', 'category']
 
 
 class AddFreePackForm(forms.ModelForm):

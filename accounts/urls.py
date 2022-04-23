@@ -21,5 +21,6 @@ urlpatterns = [
          name='password_reset_complete'),
 
     path('accounts/password-change/', views.ChangePasswordView.as_view(), name='changepassword'),
+        path('<int:id>/', views.seller, name="seller"),
 
 ]
