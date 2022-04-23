@@ -24,22 +24,22 @@ class Product(models.Model):
     class Meta:
         order_with_respect_to = 'title'
 
-class YTPACKS(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=150)
-    details = models.TextField(default="...")
-    image = models.ImageField(upload_to="GFXPack_Images/")
-    category = models.CharField(choices=YT_PACKS_CHOICES, default='--', max_length=90)
-    download_link = models.CharField(max_length=999, blank=True)
-    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
-    is_deleted = models.BooleanField(default=False)
-    views = models.IntegerField(default=0)
+# class YTPACKS(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+#     title = models.CharField(max_length=150)
+#     details = models.TextField(default="...")
+#     image = models.ImageField(upload_to="GFXPack_Images/")
+#     category = models.CharField(choices=YT_PACKS_CHOICES, default='--', max_length=90)
+#     download_link = models.CharField(max_length=999, blank=True)
+#     date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+#     is_deleted = models.BooleanField(default=False)
+#     views = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.title + 'By' + self.user
+#     def __str__(self):
+#         return self.title + 'By' + self.user
     
-    class Meta:
-        order_with_respect_to = 'title'
+#     class Meta:
+#         order_with_respect_to = 'title'
 
 class CartOrder(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)

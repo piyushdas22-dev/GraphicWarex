@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import YTPACKS, Product,CartOrder, CartOrderItems, Wishlist, ProductReview
+from .models import  Product,CartOrder, CartOrderItems, Wishlist, ProductReview
 # Register your models here.
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -10,4 +10,4 @@ admin.site.register(CartOrderItems)
 admin.site.register(CartOrder)
 admin.site.register(Wishlist)
 admin.site.register(ProductReview)
-admin.site.register(YTPACKS)
+# admin.site.register(YTPACKS)
