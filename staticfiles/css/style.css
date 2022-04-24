@@ -1,22 +1,37 @@
-.bg-grey {
-    background-color: #131A22;
+
+    .bg-grey {
+      background-color: #131A22;
+  }
+  
+  .btt-text {
+      text-decoration: none;
+      font-size: medium;
+  }
+  
+  #bg-footer {
+      background-color: #0F1111;
+      font-size: larger;
+      font-size: larger;
+  }
+  
+  
+  .navbar-nawab img {
+      width: 39px;
+      height: 39px;
+      max-width: 39px;
+      margin: 0 13px;
+  }
+
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-
-.btt-text {
-    text-decoration: none;
-    font-size: medium;
-}
-
-#bg-footer {
-    background-color: #0F1111;
-    font-size: larger;
-    font-size: larger;
-}
-
-
-.navbar-nawab img {
-    width: 39px;
-    height: 39px;
-    max-width: 39px;
-    margin: 0 13px;
+  
+.contentBox {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    
 }

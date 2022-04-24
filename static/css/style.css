@@ -21,4 +21,17 @@
       max-width: 39px;
       margin: 0 13px;
   }
+
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
   
+.contentBox {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    
+}

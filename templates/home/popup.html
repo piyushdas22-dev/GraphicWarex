@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+  
+.contentBox {
+    background-color: white;
+    position: relative;
+    width: 600px;
+    height: 400px;
+    border-radius: 20px;
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0,0,0, 0.1);
+}
+
+.contentBox .imgBx {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentBox .imgBx::before {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: #e7ffe0;
+    border-radius: 50%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: #f3f3f3 url(static/image/close.png);
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: center;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.contentBox .imgBx img {
+    position: relative;
+    max-width: 250px;
+    z-index: 1;
+}
+
+.contentBox .content {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentBox .content h3 {
+    color: #333;
+    line-height: 1em;
+    font-weight: 300;
+    font-size: 2em;
+}
+
+.contentBox .content h2 {
+    font-size: 4em;
+    margin-left: 15px;
+    color: #ff4d54;
+    line-height: 1em;
+}
+
+.contentBox .content h2 span {
+    color: #333;
+    font-size: 0.75em;
+    text-transform: uppercase;
+}
+
+.contentBox .content p {
+    font-weight:  300;
+    margin-right: 11px;
+    margin-bottom: 7px;
+}
+
+
+
+/* Now making it responsive */
+@media  (max-width : 767px)
+{
+    .contentBox { 
+        width: 300px;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .contentBox .imgBx {
+        height: 200px;
+        transform: translateY(-50px);
+    }
+
+    .contentBox .imgBx::before {
+        background: #fff;
+    }
+    .contentBox .content {
+        height: auto;
+        text-align: center;
+        padding: 20px;
+        padding-top: 0;
+    }
+
+    .close {
+        top: -50px;
+        right: -10px;
+        background: #f3f3f3 url(static/image/close.png);
+        background-repeat: no-repeat;
+        background-size: 10px;
+        background-position: center;
+    }
+
+    .contentBox .content h2 {
+        font-size: 4em;
+        color: #ff4d54;
+        line-height: 1em;
+    }
+
+    .contentBox .content h2 span {
+        color: #333;
+        font-size: 0.75em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <div class="contentBox">
+            <div class="close">
+            </div>
+            <div class="imgBx">
+                <img src="{% static 'image/mobile.png' %}"/>
+            </div>
+            <div class="content">
+                <div>
+                <h3>User Experience</h3>
+                <h2>Mobile Users</h2>
+                <p>Please turn on Desktop mode and rotate your phone landscape for best user experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Automatic Show  popup after 2s of page load -->
+
+    <script>
+     const popup = document.querySelector('.popup');
+     const close = document.querySelector('.close');
+
+     window.onload = function(){
+         setTimeout(function(){
+             popup.style.display = "block";
+
+            // Add some time delay to show popup
+            }, 2000)
+     }
+
+    //  close popup 
+    close.addEventListener('click', () => {
+        popup.style.display = "none";
+    })
+    </script>
+</body>
+</html>
