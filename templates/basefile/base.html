@@ -24,20 +24,22 @@
 
     <link
       rel="icon"
-      href="{% static 'image/favico.png' %}"
+      href="{% static 'favicons.png' %}"
       sizes="16x16 32x32"
       type="image/png"
     />
 
     <script>
-      function w3_open() {
-        document.getElementById("mySidebar").style.width = "100%";
-        document.getElementById("mySidebar").style.display = "block";
-      }
-      
-      function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-      }
+      $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+        $('#dismiss').on('click', function () {
+            $('#sidebar').removeClass('active');
+            $(this).removeClass('active');
+        });
+    });
     </script>
 
     <style>
@@ -50,6 +52,10 @@
     font-size: 1.4rem !important
 }
 
+.cart-icon {
+  margin-left: 4px;
+  margin-top: 2px;
+}
 
   .wrapper {
     display: block;
@@ -767,6 +773,12 @@
     }
 }
 
+@media(max-width: 990px){
+  .cart-icon {
+    margin-left: 0;
+    margin-top: 2px;
+  }
+}
 
 #button-addon1 {
   color: #ffc371
