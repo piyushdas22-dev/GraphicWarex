@@ -1,6 +1,8 @@
 from itertools import product
+from math import prod
 from re import template
-from unicodedata import category
+from unicodedata import category, name
+from django import views
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views import View
@@ -9,7 +11,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from .forms import AddNawabDesignsForm, AddUserProductForm, AddFreePackForm, AddPaidPackForm
+from .forms import AddWarexDesignForm, AddUserProductForm, AddFreePackForm, AddPaidPackForm, AddUserPackForm
 
 
 def thumbnails(request):
@@ -240,7 +242,7 @@ def uploaded_posts(request):
     
 def AddUserPacks(request):
     if request.method == "POST":
-        userform = AddUserProductForm(request.POST, request.FILES)
+        userform = AddUserPackForm(request.POST, request.FILES)
         if userform.is_valid():
             userpacks = userform.save(commit=False)
             userpacks.user = request.user
@@ -250,7 +252,7 @@ def AddUserPacks(request):
         else:
             messages.info(request,"Something is wrong, Try Again")
     else:
-        userform = AddUserProductForm()
+        userform = AddUserPackForm()
     return render(request, "gfx/post/post.html", {'form': userform})
 
 
@@ -269,6 +271,26 @@ def AddPaidPacks(request):
         addpacksform = AddPaidPackForm()
     return render(request, "gfx/post/post.html", {'form': addpacksform})
 
+def UserPacks(request):
+    userp = FreePackCat.objects.all()
+    UserpID = request.GET.get('userpacks')
+    if UserpID:
+        products = UserPack.objects.filter(category=UserpID).order_by('-date_uploaded')
+        return render(request, 'gfx/userpacks/userpacks.html', {'userp': userp, 'products': products})
+    else:
+        products = UserPack.objects.all().order_by('-views')
+        return render(request, 'gfx/userpacks/alluserp.html', {'userp': userp, 'products': products})
+
+def PaidPacks(request):
+    paid = PaidPackCat.objects.all()
+    PaidID = request.GET.get('paidpacks')
+    if PaidID:
+        products = PaidPack.objects.filter(category=PaidID).order_by('-date_uploaded')
+        return render(request, 'gfx/paidpacks/paidpacks.html', {'paid': paid, 'products': products})
+    else:
+        products = PaidPack.objects.all().order_by('-views')
+        return render(request, 'gfx/paidpacks/allpaid.html', {'paid': paid, 'products': products})
+
 
 def AddFreePacks(request):
     if request.method == "POST":
@@ -285,19 +307,41 @@ def AddFreePacks(request):
         freeform = AddFreePackForm()
     return render(request, "gfx/post/post.html", {'form': freeform})
 
+def FreePacks(request):
+    freep = FreePackCat.objects.all()
+    FreeID = request.GET.get('warexdesigns')
+    if FreeID:
+        products = FreePack.objects.filter(category=FreeID).order_by('-date_uploaded')
+        return render(request, 'gfx/freepacks/freepacks.html', {'freep': freep, 'products': products})
+    else:
+        products = FreePack.objects.all().order_by('-views')
+        return render(request, 'gfx/freepacks/allfree.html', {'freep': freep, 'products': products})
 
-def AddNawabDesigns(request):
+
+def AddWarexDesigns(request):
     if request.method == "POST":
-        nawabform = AddNawabDesignsForm(request.POST, request.FILES)
-        if nawabform.is_valid() and request.user.is_superuser or request.user.is_staff:
-            nawabform.save()
+        warexform = AddWarexDesignForm(request.POST, request.FILES)
+        if warexform.is_valid() and request.user.is_superuser or request.user.is_staff:
+            warexform.save(commit=False)
+            warexform.form = request.user
+            warexform.save()
             messages.success(request, f'successfully Uploaded the packs')
             return redirect('home')
         else:
             messages.info("Something is wrong, Try Again")
     else:
-        nawabform = AddNawabDesignsForm()
-    return render(request, "gfx/post/post.html", {'form': nawabform})
+        warexform = AddWarexDesignForm()
+    return render(request, "gfx/post/post.html", {'form': warexform})
+
+def WarexDesigns(request):
+    warex = WarexDesignCat.objects.all()
+    WarexID = request.GET.get('warexdesigns')
+    if WarexID:
+        products = WarexDesign.objects.filter(category=WarexID).order_by('-date_uploaded')
+        return render(request, 'gfx/warexdesigns/warexdesigns.html', {'warex': warex, 'products': products})
+    else:
+        products = WarexDesign.objects.all().order_by('-views')
+        return render(request, 'gfx/warexdesigns/allwarex.html', {'warex': warex, 'products': products})
 
 def AddUserDesigns(request):
     if request.method == "POST":
@@ -313,6 +357,16 @@ def AddUserDesigns(request):
     else:
         userform = AddUserProductForm()
     return render(request, "gfx/post/post.html", {'form': userform})
+
+def UserDesigns(request):
+    userdesign = UserDesignCat.objects.all()
+    UserID = request.GET.get('userdesigns')
+    if UserID:
+        products = UserDesign.objects.filter(category=UserID).order_by('-date_uploaded')
+        return render(request, 'gfx/userdesigns/userdesigns.html', {'userdesign': userdesign, 'products': products})
+    else:
+        products = UserDesign.objects.all().order_by('-views')
+        return render(request, 'gfx/userdesigns/alluserpost.html', {'userdesign': userdesign, 'products': products})
 
 def editpost(request, id):
         obj= get_object_or_404(Product, id=id)
@@ -336,13 +390,12 @@ def editpost(request, id):
                            'error': 'The form was not updated successfully. Please enter in a title and content'}
                 return render(request,'gfx/post/editpost.html' , context)
 
-def category_list(request):
-    data=Category.objects.all().order_by('-id')
-    return render(request,'shop/category_list.html',{'data':data})
-
-def category_product_list(request,cat_id):
-	category=SubCategory.objects.get(id=cat_id)
-	data=Product.objects.filter(cat=category).order_by('-id')
-	return render(request,'shop/category_product_list.html',{
-			'data':data,
-			})
+def partnerspack(request):
+    partners = PartnersName.objects.all()
+    YTPacksID = request.GET.get('ytpacks')
+    if YTPacksID:
+        product = PartnersPack.objects.filter(partner=YTPacksID).order_by('-date_uploaded')
+        return render(request, 'gfx/ytpacks/ytpacks.html', {'partners': partners, 'product': product})
+    else:
+        product = PartnersPack.objects.all().order_by('-views')
+        return render(request, 'gfx/ytpacks/allpacks.html', {'partners': partners, 'product': product})

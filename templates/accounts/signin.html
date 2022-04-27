@@ -5,9 +5,7 @@
 <div class="container">
     <div class="row my-3">
      <div class="col-sm-6 offset-sm-3">
-      <h3>Login</h3>
-      <hr>
-      <form action="" method="post" class="shadow p-5">
+      <form action="" method="post" class="shadow-lg p-5">
         {% csrf_token %}
       <div class="container">
         {% if messages %}
@@ -15,11 +13,17 @@
           <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %}">{{message}}</p>
         {% endfor %}
       {% endif %}
-      
+      <div class="text-center">
+        <img src="{% static 'favicons.png' %}" alt="logo" width="80" height="80">
+        <h2 class-"text-center">GraphicWareX.com</h2>
+        <p class="text-gray" style="font-size:1.75rem; line-height:1.75rem">Welcome Back!</p>
+        </div>
         {{form}}
       </div>
        <div class="text-center text-primary fw-bold"><small><a href="{% url 'password_reset' %}">Forgot Password ?</a></small></div>
+       <div class="ml-4">
        <input type="submit" class="btn btn-danger m-4" value="Signin">
+       </div>
        <br>
        <div class="text-center text-primary fw-bold"><small>New to NawabEditz ? <a href="{% url 'signup' %}"
         class="text-danger">Create an Account</a> </small></div>
@@ -27,6 +31,4 @@
      </div>
     </div>
    </div>
-   <br>
-   <br>
 {% endblock main-content %}

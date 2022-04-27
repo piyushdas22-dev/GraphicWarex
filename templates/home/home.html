@@ -20,6 +20,7 @@
 <br>
 {% else %}
 <div class="container mb-4">
+  {% include 'includes/category.html' %}
   <h2 class="text-center">Trending Now</h2>
   {% include 'includes/slider2.html' %}
   <br>
@@ -59,7 +60,6 @@
       <p>
         We provide a platform for graphics designers to buy, sell and explore different packs.Designers can Upload and buy packs / designs as easy as writing the letter "l"
       </p>
-      <a href="{% url 'paidthumbnailpacks' %}" class="btn">Shop</a>
     </div>
   </section>
   </div>

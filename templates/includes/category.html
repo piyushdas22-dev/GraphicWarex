@@ -1,0 +1,69 @@
+{% load static %}
+<section class="ftco-section">
+  <div class="container">
+    <div class="row no-gutters ftco-services">
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-shipped"><img src="{% static 'image/design.png' %}" alt="Designs" width="80" height="80"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading mt-3"><a href="{% url 'WarexDesign' %}">WareX Designs</h3></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-diet"><img src="{% static 'image/man.png' %}" alt="user" width="80" height="80"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading mt-3"><a href="{% url 'userdesigns' %}">User Designs</h3></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-award"><img src="{% static 'image/free.png' %}" alt="free" width="80" height="80"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading mt-3"><a href="{% url 'freepacks' %}">Free Packs</h3></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-award"><img src="{% static 'image/paid.png' %}" alt="paid" width="80" height="80"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading mt-3"><a href="{% url 'paidpacks' %}">Paid Packs</h3></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-award"><img src="{% static 'image/youtube.png' %}" alt="paid" width="80" height="80"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading mt-3"><a href="{% url 'partnerpacks' %}">YT Packs</h3></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4 text-center">
+          <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-customer-service"><img src="{% static 'image/pack.png' %}" alt="Packs" width="80" height="80"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading mt-3"><a href="{% url 'userpacks' %}">User Packs</h3></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>

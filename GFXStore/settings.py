@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h3#ckuy-_qje%x(jacfsngc^^xo#$!b(p74m*g$w!jg#swmot='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'gfx',
     'cloudinary',
     'cloudinary_storage',
+    'vfx',
 ]
 
 MIDDLEWARE = [

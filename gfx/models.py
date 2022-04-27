@@ -1,9 +1,138 @@
+from tabnanny import verbose
+from turtle import title
 from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
 from .choices import *
 import datetime
 # Create your models here.
+
+class UserDesignCat(models.Model):
+    name = models.CharField(max_length=99)
+
+    def __str__(self) -> str:
+        return self.name
+        
+class WarexDesignCat(models.Model):
+    name = models.CharField(max_length=99)
+
+    def __str__(self) -> str:
+        return self.name
+
+class FreePackCat(models.Model):
+    name = models.CharField(max_length=99)
+
+    def __str__(self) -> str:
+        return self.name
+
+class PaidPackCat(models.Model):
+    name = models.CharField(max_length=99)
+
+    def __str__(self) -> str:
+        return self.name
+
+class UserPackCat(models.Model):
+    name = models.CharField(max_length=99)
+
+    def __str__(self) -> str:
+        return self.name
+
+class WarexDesign(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=150)
+    details = models.TextField(default="Write description here....")
+    image = models.ImageField(upload_to="WarexDesign_Images/")
+    category = models.ForeignKey(WarexDesignCat, on_delete=models.CASCADE)
+    download_link = models.CharField(max_length=999, blank=True)
+    is_deleted = models.BooleanField(default=False)
+    sp = models.IntegerField(default=0)
+    dp = models.IntegerField(default=0)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    views = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        order_with_respect_to = 'title'
+
+class FreePack(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=150)
+    details = models.TextField(default="Write description here....")
+    image = models.ImageField(upload_to="FreePack_Images/")
+    category = models.ForeignKey(FreePackCat, on_delete=models.CASCADE)
+    download_link = models.CharField(max_length=999, blank=True)
+    is_deleted = models.BooleanField(default=False)
+    sp = models.IntegerField(default=0)
+    dp = models.IntegerField(default=0)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    views = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        order_with_respect_to = 'title'
+
+
+class PaidPack(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=150)
+    details = models.TextField(default="Write description here....")
+    image = models.ImageField(upload_to="Paid_Images/")
+    category = models.ForeignKey(PaidPackCat, on_delete=models.CASCADE)
+    download_link = models.CharField(max_length=999, blank=True)
+    is_deleted = models.BooleanField(default=False)
+    sp = models.IntegerField(default=0)
+    dp = models.IntegerField(default=0)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    views = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        order_with_respect_to = 'title'
+    
+
+class UserDesign(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=150)
+    details = models.TextField(default="Write description here....")
+    image = models.ImageField(upload_to="UserDesign_Images/")
+    category = models.ForeignKey(UserDesignCat, on_delete=models.CASCADE)
+    download_link = models.CharField(max_length=999, blank=True)
+    is_deleted = models.BooleanField(default=False)
+    sp = models.IntegerField(default=0)
+    dp = models.IntegerField(default=0)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    views = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        order_with_respect_to = 'title'
+
+class UserPack(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=150)
+    details = models.TextField(default="Write description here....")
+    image = models.ImageField(upload_to="UserPack_Images/")
+    category = models.ForeignKey(UserPackCat, on_delete=models.CASCADE)
+    download_link = models.CharField(max_length=999, blank=True)
+    is_deleted = models.BooleanField(default=False)
+    sp = models.IntegerField(default=0)
+    dp = models.IntegerField(default=0)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    views = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        order_with_respect_to = 'title'
 
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -24,64 +153,6 @@ class Product(models.Model):
     class Meta:
         order_with_respect_to = 'title'
 
-# class YTPACKS(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-#     title = models.CharField(max_length=150)
-#     details = models.TextField(default="...")
-#     image = models.ImageField(upload_to="GFXPack_Images/")
-#     category = models.CharField(choices=YT_PACKS_CHOICES, default='--', max_length=90)
-#     download_link = models.CharField(max_length=999, blank=True)
-#     date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
-#     is_deleted = models.BooleanField(default=False)
-#     views = models.IntegerField(default=0)
-
-#     def __str__(self):
-#         return self.title + 'By' + self.user
-    
-#     class Meta:
-#         order_with_respect_to = 'title'
-
-class CartOrder(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    total_amt=models.FloatField()
-    paid_status=models.BooleanField(default=False)
-    order_dt=models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        verbose_name_plural='Orders'
-
-# OrderItems
-class CartOrderItems(models.Model):
-    order=models.ForeignKey(CartOrder,on_delete=models.CASCADE)
-    invoice_no=models.CharField(max_length=150)
-    item=models.CharField(max_length=150)
-    image=models.CharField(max_length=200)
-    price=models.FloatField()
-    total=models.FloatField()
-
-    class Meta:
-        verbose_name_plural='Order Items'
-
-# Product Review
-RATING=(
-    (1,'1'),
-    (2,'2'),
-    (3,'3'),
-    (4,'4'),
-    (5,'5'),
-)
-class ProductReview(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    product=models.ForeignKey(Product,on_delete=models.CASCADE)
-    review_text=models.TextField()
-    review_rating=models.CharField(choices=RATING,max_length=150)
-
-    class Meta:
-        verbose_name_plural='Reviews'
-
-    def get_review_rating(self):
-        return self.review_rating
-
 # WishList
 class Wishlist(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -89,4 +160,32 @@ class Wishlist(models.Model):
 
     class Meta:
         verbose_name_plural='Wishlist'
+
+
+class PartnersName(models.Model):
+    name = models.CharField(max_length=99)
+    slug = models.SlugField(max_length=99)
+
+    class Meta:
+        verbose_name_plural = 'Partners'
+
+    def __str__(self) -> str:
+        return self.name
+
+class PartnersPack(models.Model):
+    partner = models.ForeignKey(PartnersName, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=150)
+    details = models.TextField(default="...")
+    image = models.ImageField(upload_to="PartnerPack_Images/")
+    download_link = models.CharField(max_length=999, blank=True)
+    is_deleted = models.BooleanField(default=False)
+    sp = models.IntegerField(default=0)
+    dp = models.IntegerField(default=0)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    views = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title + 'by' + self.partner.name
     
+    class Meta:
+        order_with_respect_to = 'title'

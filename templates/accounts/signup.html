@@ -5,9 +5,6 @@
 <div class="container">
  <div class="row my-3">
   <div class="col-sm-6 offset-sm-3">
-   <h3>Sign Up</h3>
-   <hr>
-
    {% if otp %}
    <form method="POST">
      {% csrf_token %}
@@ -35,13 +32,18 @@
 
  </form>
 {% else %}
-  <form action="" method="POST" novalidate class="shadow p-5">
+  <form action="" method="POST" novalidate class="shadow-lg p-5">
     {% if messages %}
       {% for message in messages %}
         <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %}">{{message}}</p>
       {% endfor %}
     {% endif %}
     {% csrf_token %}
+    <div class="text-center">
+      <img src="{% static 'favicons.png' %}" alt="logo" width="80" height="80">
+      <h2 class-"text-center">GraphicWareX.com</h2>
+      <p class="text-gray" style="font-size:1.75rem; line-height:1.75rem">Create An Account!</p>
+      </div>
     {% for fm in form %}
     <div class="form-group mb-3">
       {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
