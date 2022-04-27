@@ -1,5 +1,3 @@
-from tabnanny import verbose
-from turtle import title
 from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
