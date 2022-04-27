@@ -162,7 +162,6 @@ class Wishlist(models.Model):
 
 class PartnersName(models.Model):
     name = models.CharField(max_length=99)
-    slug = models.SlugField(max_length=99)
 
     class Meta:
         verbose_name_plural = 'Partners'
