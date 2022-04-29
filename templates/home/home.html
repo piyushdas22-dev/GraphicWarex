@@ -6,21 +6,79 @@
 <!-- Back to top -->
 {% if messages %}
 {% for message in messages %}
-  <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %}">{{message}}</p>
+<p {% if message.tags %} class="alert alert-{{message.tags}} mb-5 {% endif %}">{{message}}</p>
 {% endfor %}
 {% endif %}
 {% comment %} <div>
   <a class="bg-dark container text-center p-2" href="#backtotop">Back To Top</a>
 </div> {% endcomment %}
-
 {% include 'includes/slider.html' %}
-<hr>
+<br>
+{% include 'includes/category.html' %}
+
 
 {% if trends|length < 1 %}
-<br>
+  {% if trends2|length < 1 %}
+    {% if trends3|length < 1 %}
+  <br>
+  {% else %}
+  <div class="container mb-4">
+    <h2 class="text-center">Trending FreePacks</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+          {% for c in trends3|slice:"10" %}
+          <div class="col">
+            <div class="card h-100">
+              <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{c.title}}</h5>
+              <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{c.sp}}</del> <span class="text-danger">₹{{c.dp}}</span></p>
+              <hr>
+              <img class="rounded-circle" src="{{ c.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
+              Designer: {{c.user}} 
+              
+            </a>
+            <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
+            <div class="text-center">
+              <a href="{{c.download_link}}" role="button" class="btn btn-dark">Buy Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <hr>
+  </div>
+  {% endif %}
 {% else %}
 <div class="container mb-4">
-  {% include 'includes/category.html' %}
+  <h2 class="text-center">Trending Paid Packs</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for c in trends2|slice:"10" %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
+          <div class="card-body">
+            <h5 class="card-title">{{c.title}}</h5>
+            <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{c.sp}}</del> <span class="text-danger">₹{{c.dp}}</span></p>
+            <hr>
+            <img class="rounded-circle" src="{{ c.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
+            Designer: {{c.user}} 
+            
+          </a>
+          <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
+          <div class="text-center">
+            <a href="{{c.download_link}}" role="button" class="btn btn-dark">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <hr>
+</div>
+{% endif %}
+{% else %}
+<div class="container mb-4">
   <h2 class="text-center">Trending Now</h2>
   {% include 'includes/slider2.html' %}
   <br>
@@ -39,8 +97,7 @@
           </a>
           <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
           <div class="text-center">
-            <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
-            <a href="#" role="button" class="btn btn-dark">Buy Now</a>
+            <a href="{{c.download_link}}" role="button" class="btn btn-dark">Buy Now</a>
           </div>
         </div>
       </div>
@@ -64,7 +121,65 @@
   </section>
   </div>
   {% if recent|length < 1 %}
+    {% if recent2|length < 1 %}
+      {% if recent3|length < 1 %}
   <br>
+  {% else %}
+  <div class="container mb-2 mt-5">
+    <h2 class="text-center">Recent Free Packs</h2>
+    <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+          {% for c in recent3|slice:"10" %}
+          <div class="col">
+            <div class="card h-100">
+              <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{c.title}}</h5>
+              <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{c.sp}}</del> <span class="text-danger">₹{{c.dp}}</span></p>
+              <hr>
+              <img class="rounded-circle" src="{{ c.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
+              Designer: {{c.user}} 
+              
+            </a>
+            <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
+            <div class="text-center">
+              <a href="{{c.download_link}}" role="button" class="btn btn-dark">Buy Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+{% else %}
+<div class="container mb-2 mt-5">
+  <h2 class="text-center">Recent Paid Packs</h2>
+  <br>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for c in recent2|slice:"10" %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{c.image.url}}" class="card-img-top" alt="{{c.title}}">
+          <div class="card-body">
+            <h5 class="card-title">{{c.title}}</h5>
+            <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{c.sp}}</del> <span class="text-danger">₹{{c.dp}}</span></p>
+            <hr>
+            <img class="rounded-circle" src="{{ c.user.profile.profile_pic.url }}" alt="image" onerror="this.src='{% static 'image/default_profile_pic.png' %}'" id="img" width="30" height="30"/> 
+            Designer: {{c.user}} 
+            
+          </a>
+          <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
+          <div class="text-center">
+            <a href="{{c.download_link}}" role="button" class="btn btn-dark">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
   {% else %}
   <div class="container mb-2 mt-5">
     <h2 class="text-center">Recent Posts</h2>
@@ -84,8 +199,7 @@
             </a>
             <p class="text-center">Uploaded:{{c.date_uploaded|timesince}} ago</p>
             <div class="text-center">
-              <a href="#" role="button" class="btn btn-dark">Add To Cart</a>
-              <a href="#" role="button" class="btn btn-dark">Buy Now</a>
+              <a href="{{c.download_link}}" role="button" class="btn btn-dark">Buy Now</a>
             </div>
           </div>
         </div>

@@ -170,6 +170,7 @@ class PartnersName(models.Model):
         return self.name
 
 class PartnersPack(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     partner = models.ForeignKey(PartnersName, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=150)
     details = models.TextField(default="...")

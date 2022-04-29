@@ -11,7 +11,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from .forms import AddWarexDesignForm, AddUserProductForm, AddFreePackForm, AddPaidPackForm, AddUserPackForm
+from .forms import AddPartnersPackForm, AddWarexDesignForm, AddUserProductForm, AddFreePackForm, AddPaidPackForm, AddUserPackForm
 
 
 def thumbnails(request):
@@ -226,7 +226,20 @@ class PaidPacksGFXMaterialDetails(View):
 
 def delete(request, pk):
     """Function deletes user's post."""
-    product = Product.objects.get(id=pk)
+    product = WarexDesign.objects.get(id=pk)
+    if request.user.is_authenticated and request.user.is_superuser or request.user.is_staff:
+        product.is_deleted = True
+        product.save()
+        messages.success(request, f'Successfully Deleted the Post')
+    else:
+        messages.warning(
+            request, "You can't delete this upload, looks like this upload does'nt belongs to you.")
+    return redirect('home')
+
+
+def delete2(request, pk):
+    """Function deletes user's post."""
+    product = UserDesign.objects.get(id=pk)
     if request.user.is_authenticated and request.user == product.user or request.user.is_superuser or request.user.is_staff:
         product.is_deleted = True
         product.save()
@@ -236,9 +249,55 @@ def delete(request, pk):
             request, "You can't delete this upload, looks like this upload does'nt belongs to you.")
     return redirect('home')
 
-def uploaded_posts(request):
-	product = Product.objects.filter(user = request.user, is_deleted=False)
-	return render(request, 'accounts/user_upload.html', {'product': product})
+def delete3(request, pk):
+    """Function deletes user's post."""
+    product = FreePack.objects.get(id=pk)
+    if request.user.is_authenticated and request.user.is_superuser or request.user.is_staff:
+        product.is_deleted = True
+        product.save()
+        messages.success(request, f'Successfully Deleted the Post')
+    else:
+        messages.warning(
+            request, "You can't delete this upload, looks like this upload does'nt belongs to you.")
+    return redirect('home')
+
+
+def delete4(request, pk):
+    """Function deletes user's post."""
+    product = PaidPack.objects.get(id=pk)
+    if request.user.is_authenticated and request.user.is_superuser or request.user.is_staff:
+        product.is_deleted = True
+        product.save()
+        messages.success(request, f'Successfully Deleted the Post')
+    else:
+        messages.warning(
+            request, "You can't delete this upload, looks like this upload does'nt belongs to you.")
+    return redirect('home')
+
+
+def delete5(request, pk):
+    """Function deletes user's post."""
+    product = UserPack.objects.get(id=pk)
+    if request.user.is_authenticated and request.user == product.user or request.user.is_superuser or request.user.is_staff:
+        product.is_deleted = True
+        product.save()
+        messages.success(request, f'Successfully Deleted the Post')
+    else:
+        messages.warning(
+            request, "You can't delete this upload, looks like this upload does'nt belongs to you.")
+    return redirect('home')
+
+def delete6(request, pk):
+    """Function deletes user's post."""
+    product = PartnersPack.objects.get(id=pk)
+    if request.user.is_authenticated:
+        product.is_deleted = True
+        product.save()
+        messages.success(request, f'Successfully Deleted the Post')
+    else:
+        messages.warning(
+            request, "You can't delete this upload, looks like this upload does'nt belongs to you.")
+    return redirect('home')
     
 def AddUserPacks(request):
     if request.method == "POST":
@@ -390,6 +449,136 @@ def editpost(request, id):
                            'error': 'The form was not updated successfully. Please enter in a title and content'}
                 return render(request,'gfx/post/editpost.html' , context)
 
+def editpost2(request, id):
+        obj= get_object_or_404(Product, id=id)
+        
+        form = AddWarexDesignForm(request.POST or None, instance= obj)
+        context= {'form': form}
+
+        if form.is_valid():
+                obj= form.save(commit= False)
+
+                obj.save()
+
+                messages.success(request, "You successfully updated the post")
+
+                context= {'form': form}
+
+                return render(request, 'gfx/post/editpost.html', context)
+
+        else:
+                context= {'form': form,
+                           'error': 'The form was not updated successfully. Please enter in a title and content'}
+                return render(request,'gfx/post/editpost.html' , context)
+
+def editpost3(request, id):
+        obj= get_object_or_404(Product, id=id)
+        
+        form = AddUserDesigns(request.POST or None, instance= obj)
+        context= {'form': form}
+
+        if form.is_valid():
+                obj= form.save(commit= False)
+
+                obj.save()
+
+                messages.success(request, "You successfully updated the post")
+
+                context= {'form': form}
+
+                return render(request, 'gfx/post/editpost.html', context)
+
+        else:
+                context= {'form': form,
+                           'error': 'The form was not updated successfully. Please enter in a title and content'}
+                return render(request,'gfx/post/editpost.html' , context)
+
+
+def editpost4(request, id):
+        obj= get_object_or_404(Product, id=id)
+        
+        form = AddPaidPackForm(request.POST or None, instance= obj)
+        context= {'form': form}
+
+        if form.is_valid():
+                obj= form.save(commit= False)
+
+                obj.save()
+
+                messages.success(request, "You successfully updated the post")
+
+                context= {'form': form}
+
+                return render(request, 'gfx/post/editpost.html', context)
+
+        else:
+                context= {'form': form,
+                           'error': 'The form was not updated successfully. Please enter in a title and content'}
+                return render(request,'gfx/post/editpost.html' , context)
+
+def editpost5(request, id):
+        obj= get_object_or_404(Product, id=id)
+        
+        form = AddUserPackForm(request.POST or None, instance= obj)
+        context= {'form': form}
+
+        if form.is_valid():
+                obj= form.save(commit= False)
+
+                obj.save()
+
+                messages.success(request, "You successfully updated the post")
+
+                context= {'form': form}
+
+                return render(request, 'gfx/post/editpost.html', context)
+
+        else:
+                context= {'form': form,
+                           'error': 'The form was not updated successfully. Please enter in a title and content'}
+                return render(request,'gfx/post/editpost.html' , context)
+
+
+def editpost6(request, id):
+        obj= get_object_or_404(Product, id=id)
+        
+        form = AddPartnersPackForm(request.POST or None, instance= obj)
+        context= {'form': form}
+
+        if form.is_valid():
+                obj= form.save(commit= False)
+
+                obj.save()
+
+                messages.success(request, "You successfully updated the post")
+
+                context= {'form': form}
+
+                return render(request, 'gfx/post/editpost.html', context)
+
+        else:
+                context= {'form': form,
+                           'error': 'The form was not updated successfully. Please enter in a title and content'}
+                return render(request,'gfx/post/editpost.html' , context)
+
+
+
+def AddPartnerPack(request):
+    if request.method == "POST":
+        partnerform = AddPartnersPackForm(request.POST, request.FILES)
+        if partnerform.is_valid():
+            partnerpack = partnerform.save(commit=False)
+            partnerform.user = request.user
+            partnerpack.save()
+            messages.success(
+                request, f'Successfully Added Your Design for verification, it will be automatically uploaded once verified')
+        else:
+            messages.info("Something is wrong, Try Again")
+    else:
+        partnerform = AddPartnersPackForm
+    return render(request, "gfx/post/post.html", {'form': partnerform})
+
+
 def partnerspack(request):
     partners = PartnersName.objects.all()
     YTPacksID = request.GET.get('ytpacks')
@@ -399,3 +588,14 @@ def partnerspack(request):
     else:
         product = PartnersPack.objects.all().order_by('-views')
         return render(request, 'gfx/ytpacks/allpacks.html', {'partners': partners, 'product': product})
+
+def uploads(request):
+    product = WarexDesign.objects.filter(user = request.user, is_deleted=False)
+    product2 = UserDesign.objects.filter(user = request.user, is_deleted=False)
+    product3 = FreePack.objects.filter(user = request.user, is_deleted=False)
+    product4 = PaidPack.objects.filter(user = request.user, is_deleted=False)
+    product5 = UserPack.objects.filter(user = request.user, is_deleted=False)
+    product6 = PartnersPack.objects.filter(user=request.user,is_deleted=False)
+
+    context = {'product': product, 'product2': product2, 'product3': product3, 'product4':product4, 'product5': product5, 'product6': product6}
+    return render(request, "accounts/user_upload.html", context)

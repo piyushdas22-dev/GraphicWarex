@@ -47,31 +47,68 @@
           </button>
       </div>
     </nav>
-
-{% if product %}
-<div class="container">
-    <h3>Your Uploads:</h3>
-    {% for b in product %}
-    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-    <img src="{{b.image.url}}" class="card-img-top" alt="video thumbnail">
-            <strong class="d-inline-block mb-2 text-primary">Graphic WareX</strong>
-            <h3 class="mb-0">{{b.title}}</h3> 
-            <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{b.sp}}</del> <span class="text-danger">₹{{b.dp}}</span></p>
-            <hr>
-               <div class="text-center">
-                <a href="https://{{b.order_link}}" target="_blank" role="button" class="btn btn-dark">Buy Now</a>
-                <a class="btn btn-danger" href="{% url "delete-post" b.id%}">Delete</a>
-                <a class="btn btn-danger" href="{% url "editpost" b.id %}">Edit Post</a>
-               </div>
-            </div>
-            </div>
-            {% endfor %}
-          </div>
-          </div>
-{% else %}
+{% if product|length < 1 and product2|length < 1 and product3|length < 1 and product4|length < 1 and product5|length < 1 and product6|length < 1 %}
 <h2 class="text-center">You don't have any uploads yet...</h2>
+{% else %}
+{% if product|length < 1 %}
 <br>
+{% else %}
+<div class="container">
+    {% for i in product %}
+{% include 'includes/warexdesigns.html' %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if product2|length < 1 %}
 <br>
+{% else %}
+<div class="container">
+    {% for i in product2 %}
+{% include 'includes/userdesigns.html' %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if product3|length < 1 %}
+<br>
+{% else %}
+<div class="container">
+    {% for i in product3 %}
+{% include 'includes/freepacks.html' %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if product4|length < 1 %}
+<br>
+{% else %}
+<div class="container">
+    {% for i in product4 %}
+{% include 'includes/paidpacks.html' %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if product5|length < 1 %}
+<br>
+{% else %}
+<div class="container">
+    {% for i in product5 %}
+{% include 'includes/userpacks.html' %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% if product6|length < 1 %}
+<br>
+{% else %}
+<div class="container">
+    {% for i in product6 %}
+{% include 'includes/ytpackscard.html' %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
 {% endif %}
 {% endblock main-content %}

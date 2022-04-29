@@ -30,35 +30,8 @@
                 <p class="card-text"><span class="text-dark">Price:</span> <del>₹{{i.sp}}</del> <span class="text-danger">₹{{i.dp}}</span></p>
                 <hr>
                    <div class="text-center">
-                    <a href="#" target="_blank" role="button" class="btn btn-dark">Add to Cart</a>
-                    <a href="{{buy_link}}" role="button" class="btn btn-dark">Buy Now</a>
-                  {% if request.user.is_superuser or request.user.is_staff%}
-                  <a href="#myModal" class="btn btn-danger" data-toggle="modal">Delete</a>
-                  
-                  
-                  {% endif %}
+                    <a href="{{i.download_link}}" role="button" class="btn btn-dark">Buy Now</a>
                    </div>
                 </div>
                 </div>
       
-        
-<!-- Modal -->
-<div id="myModal" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header flex-column">
-				<div class="icon-box">
-					<i class="material-icons">&#xE5CD;</i>
-				</div>						
-				<h4 class="modal-title w-100">Are you sure?</h4>	
-			</div>
-			<div class="modal-body">
-				<p>Do you really want to delete this post This process cannot be undone.</p>
-			</div>
-			<div class="modal-footer justify-content-center">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<a href="{% url 'delete-post' i.id %}" class="btn btn-danger">Delete</a>
-			</div>
-		</div>
-	</div>
-</div>     

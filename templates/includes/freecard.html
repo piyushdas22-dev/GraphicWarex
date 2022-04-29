@@ -1,0 +1,37 @@
+<style>
+    .modal-confirm {		
+      color: #636363;
+      width: 300px;
+    }
+  
+    .modal-confirm .icon-box {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+      z-index: 9;
+      text-align: center;
+      border: 3px solid #f15e5e;
+    }
+    .modal-confirm .icon-box i {
+      color: #f15e5e;
+      font-size: 46px;
+      display: inline-block;
+      margin-top: 13px;
+    }
+    </style>
+          
+          
+          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+            <img src="{{i.image.url}}" class="card-img-top" alt="video thumbnail">
+                  <strong class="d-inline-block mb-2 text-primary">{{i.user}}</strong>
+                  <h3 class="mb-0">{{i.title}}</h3> 
+                  <p class="card-text"><span class="text-dark">Price:</span> <del>₹0</del> <span class="text-danger">₹0 (Free)</span></p>
+                  <hr>
+                     <div class="text-center">
+                      <a href="{{i.download_link}}" role="button" class="btn btn-dark">Download Now</a>
+                     </div>
+                  </div>
+                  </div>
+        
