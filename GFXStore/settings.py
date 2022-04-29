@@ -16,6 +16,12 @@ import os
 import cloudinary
 import cloudinary_storage
 
+import environ
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +31,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h3#ckuy-_qje%x(jacfsngc^^xo#$!b(p74m*g$w!jg#swmot='
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -129,7 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': "nawabeditz",
+    'CLOUD_NAME': env("CLOUD_NAME"),
     'API_KEY': "557842943649448",
     'API_SECRET': "2HxdOA99Or9YvNCKtLQKGEsH-Xw",
 }
@@ -154,9 +160,9 @@ LOGIN_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True  
 EMAIL_HOST = 'smtp.gmail.com'  
-EMAIL_HOST_USER = 'teamnawabeditzmail@gmail.com'  
-EMAIL_HOST_PASSWORD = 'twevcabkfkdwhknl'  
-EMAIL_PORT = 587  
+EMAIL_HOST_USER = env("EMAIL_HOST_USER") 
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")  
+EMAIL_PORT = 587
 
 import dj_database_url
 dj_from_env = dj_database_url.config(conn_max_age=600)
